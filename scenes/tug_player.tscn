@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvpj11elmui3x"]
+
+[ext_resource type="Script" uid="uid://fr0wjcw4av83" path="res://scripts/tug_player.gd" id="1_7wpad"]
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_nox0v"]
+
+[node name="TugPlayer" type="RigidBody2D"]
+mass = 0.1
+gravity_scale = 0.0
+linear_damp = 4.0
+script = ExtResource("1_7wpad")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nox0v")

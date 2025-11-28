@@ -1,3 +1,35 @@
-[gd_scene format=3 uid="uid://di7okftxl6jka"]
+[gd_scene load_steps=4 format=3 uid="uid://di7okftxl6jka"]
+
+[ext_resource type="PackedScene" uid="uid://dvpj11elmui3x" path="res://scenes/tug_player.tscn" id="1_jnwth"]
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_juwlg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkwhn"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="TugPlayer" parent="." node_paths=PackedStringArray("other_player") instance=ExtResource("1_jnwth")]
+position = Vector2(-200, 0)
+other_player = NodePath("../TugPlayer2")
+
+[node name="TugPlayer2" parent="." node_paths=PackedStringArray("other_player") instance=ExtResource("1_jnwth")]
+position = Vector2(200, 0)
+player = 1
+other_player = NodePath("../TugPlayer")
+
+[node name="Trophy" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+visible = false
+mass = 0.1
+gravity_scale = 0.0
+linear_damp = 4.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Trophy"]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_juwlg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trophy"]
+shape = SubResource("RectangleShape2D_mkwhn")

@@ -1,0 +1,73 @@
+class_name TugPlayer extends RigidBody2D
+
+@export var rope_len := 400.0
+@export var player := Utils.PlayerType.PLAYER_1
+@export var move_force := 100.0
+@export var other_player: TugPlayer
+@export var rand_factor_max := 10.0
+@export var rand_factor_min := 0.5
+@export var rand_factor_period := 2
+@export var spam_inc := 0.1
+
+@onready var trophy: RigidBody2D = %Trophy
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var _curr_rand_factor := randf_range(rand_factor_min, rand_factor_max)
+
+var _should_burst := false
+
+var _rand_factor_dir := 1
+var _curr_spam := 1.0
+
+func _ready() -> void:
+    _periodic_random_impulse()
+
+func _periodic_random_impulse() -> void:
+    while true:
+        await get_tree().create_timer(randf_range(2.0, 3.0)).timeout
+        var impulse = move_force * Vector2(randf_range(-1, 1), randf_range(-1, 1))
+        apply_central_impulse(impulse)
+
+func _draw() -> void:
+    if player == Utils.PlayerType.PLAYER_1:
+        draw_line(Vector2.ZERO, to_local(other_player.global_position), Color.WHITE, 16.0)
+
+func _process(delta: float) -> void:
+    _curr_spam = max(1.0, _curr_spam - spam_inc * delta * 5.0)
+    if Utils.is_player_action_just_pressed("button1", player):
+        _curr_spam += spam_inc
+
+    if Utils.is_player_action_just_pressed("button2", player):
+        _should_burst = true
+
+    _curr_rand_factor += _rand_factor_dir * delta * (rand_factor_max - rand_factor_min) / rand_factor_period
+    if _curr_rand_factor > rand_factor_max or _curr_rand_factor < rand_factor_min:
+        _rand_factor_dir *= -1
+
+    queue_redraw()
+
+func _physics_process(_delta: float) -> void:
+    var move_vector = _get_move_vector(player)
+    apply_central_force(move_vector * move_force)
+    if _should_burst:
+        _should_burst = false
+        apply_central_impulse(move_vector * move_force * 0.25)
+    _clamp_pos_to_screen()
+
+    var to_other = other_player.global_position - global_position
+    if to_other.length() > rope_len:
+        var force = - to_other.normalized() * move_force
+        force *= 0.25 * (to_other.length() - rope_len)
+        force *= _curr_rand_factor
+        force *= _curr_spam
+        other_player.apply_central_force(force)
+
+func _clamp_pos_to_screen() -> void:
+    var screen_rect = Utils.get_global_viewport_rect()
+    var sprite_rect = Utils.get_sprite_global_rect(sprite)
+    position = position.clamp(screen_rect.position + sprite_rect.size / 2, screen_rect.end - sprite_rect.size / 2)
+
+func _get_trophy_vector() -> Vector2:
+    return trophy.global_position - global_position
+
+func _get_move_vector(player_type: Utils.PlayerType) -> Vector2:
+    return Utils.get_player_move_vector("move_left", "move_right", "move_up", "move_down", player_type)
