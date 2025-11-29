@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c76wfctdq3km"]
+
+[ext_resource type="Script" uid="uid://77iwp1tqdr35" path="res://scripts/eat_player.gd" id="1_mdhbk"]
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_a115j"]
+
+[node name="Eat" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="EatPlayer" type="RigidBody2D" parent="."]
+position = Vector2(-250, 203)
+gravity_scale = 0.0
+linear_damp = 4.0
+script = ExtResource("1_mdhbk")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EatPlayer"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_a115j")

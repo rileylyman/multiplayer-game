@@ -4,7 +4,7 @@ class_name TugPlayer extends RigidBody2D
 @export var player := Utils.PlayerType.PLAYER_1
 @export var move_force := 100.0
 @export var other_player: TugPlayer
-@export var rand_factor_max := 10.0
+@export var rand_factor_max := 5.0
 @export var rand_factor_min := 0.5
 @export var rand_factor_period := 2
 @export var spam_inc := 0.1
@@ -24,7 +24,7 @@ func _ready() -> void:
 func _periodic_random_impulse() -> void:
     while true:
         await get_tree().create_timer(randf_range(2.0, 3.0)).timeout
-        var impulse = move_force * Vector2(randf_range(-1, 1), randf_range(-1, 1))
+        var impulse = 0.25 * move_force * Vector2(randf_range(-1, 1), randf_range(-1, 1))
         apply_central_impulse(impulse)
 
 func _draw() -> void:
@@ -64,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 func _clamp_pos_to_screen() -> void:
     var screen_rect = Utils.get_global_viewport_rect()
     var sprite_rect = Utils.get_sprite_global_rect(sprite)
-    position = position.clamp(screen_rect.position + sprite_rect.size / 2, screen_rect.end - sprite_rect.size / 2)
+    global_position = global_position.clamp(screen_rect.position + sprite_rect.size / 2, screen_rect.end - sprite_rect.size / 2)
 
 func _get_trophy_vector() -> Vector2:
     return trophy.global_position - global_position
