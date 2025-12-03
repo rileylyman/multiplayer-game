@@ -1,0 +1,11 @@
+extends Control
+
+
+@onready var total_time_s := GameManager.round_length_s
+@onready var fore: ColorRect = $Fg
+
+var time_s := 0.0
+
+func _process(delta: float) -> void:
+    time_s += delta
+    fore.custom_minimum_size.x = get_viewport_rect().size.x * (1 - time_s / total_time_s)

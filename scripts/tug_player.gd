@@ -12,53 +12,55 @@ class_name TugPlayer extends RigidBody2D
 @onready var trophy: RigidBody2D = %Trophy
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var _curr_rand_factor := randf_range(rand_factor_min, rand_factor_max)
+@onready var _arm_container: ArmContainer = $ArmContainer
 
-var _should_burst := false
+var need_back_burst := false
 
 var _rand_factor_dir := 1
-var _curr_spam := 1.0
 
 func _ready() -> void:
     _periodic_random_impulse()
 
 func _periodic_random_impulse() -> void:
-    while true:
-        await get_tree().create_timer(randf_range(2.0, 3.0)).timeout
+    while not GameManager.tug_over:
         var impulse = 0.25 * move_force * Vector2(randf_range(-1, 1), randf_range(-1, 1))
         apply_central_impulse(impulse)
+        await get_tree().create_timer(randf_range(2.0, 3.0)).timeout
 
-func _draw() -> void:
-    if player == Utils.PlayerType.PLAYER_1:
-        draw_line(Vector2.ZERO, to_local(other_player.global_position), Color.WHITE, 16.0)
+func chainsaw_hit(is_self: bool) -> void:
+    need_back_burst = is_self
+    _arm_container.player_hit(is_self)
 
 func _process(delta: float) -> void:
-    _curr_spam = max(1.0, _curr_spam - spam_inc * delta * 5.0)
-    if Utils.is_player_action_just_pressed("button1", player):
-        _curr_spam += spam_inc
-
-    if Utils.is_player_action_just_pressed("button2", player):
-        _should_burst = true
-
     _curr_rand_factor += _rand_factor_dir * delta * (rand_factor_max - rand_factor_min) / rand_factor_period
     if _curr_rand_factor > rand_factor_max or _curr_rand_factor < rand_factor_min:
         _rand_factor_dir *= -1
 
-    queue_redraw()
+    if not GameManager.tug_over:
+        _arm_container.target = other_player.global_position
 
 func _physics_process(_delta: float) -> void:
     var move_vector = _get_move_vector(player)
     apply_central_force(move_vector * move_force)
-    if _should_burst:
-        _should_burst = false
-        apply_central_impulse(move_vector * move_force * 0.25)
+    if Utils.is_player_action_just_pressed("button1", player) or Utils.is_player_action_just_pressed("button2", player):
+        var d = move_vector
+        if d.length() == 0:
+            d = -_get_trophy_vector().normalized()
+
+        apply_central_impulse(d * move_force * 0.25)
+
+    if need_back_burst:
+        print("applying burst to ", player)
+        apply_central_impulse((Vector2.LEFT if player == Utils.PlayerType.PLAYER_1 else Vector2.RIGHT) * move_force * 2)
+        need_back_burst = false
+
     _clamp_pos_to_screen()
 
     var to_other = other_player.global_position - global_position
-    if to_other.length() > rope_len:
+    if not GameManager.tug_over and to_other.length() > rope_len:
         var force = - to_other.normalized() * move_force
         force *= 0.25 * (to_other.length() - rope_len)
         force *= _curr_rand_factor
-        force *= _curr_spam
         other_player.apply_central_force(force)
 
 func _clamp_pos_to_screen() -> void:

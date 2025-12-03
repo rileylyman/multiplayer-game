@@ -1,9 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://di7okftxl6jka"]
+[gd_scene load_steps=8 format=3 uid="uid://di7okftxl6jka"]
 
 [ext_resource type="PackedScene" uid="uid://dvpj11elmui3x" path="res://scenes/tug_player.tscn" id="1_jnwth"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_juwlg"]
+[ext_resource type="Script" uid="uid://6b2nhc0pya2" path="res://scripts/chainsaw.gd" id="3_o7iot"]
+[ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_88seb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkwhn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swbcm"]
+size = Vector2(60, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_88seb"]
+b = Vector2(0, 1000)
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,16 +20,21 @@ metadata/_edit_lock_ = true
 
 [node name="TugPlayer" parent="." node_paths=PackedStringArray("other_player") instance=ExtResource("1_jnwth")]
 position = Vector2(-200, 0)
+collision_mask = 5
 other_player = NodePath("../TugPlayer2")
 
 [node name="TugPlayer2" parent="." node_paths=PackedStringArray("other_player") instance=ExtResource("1_jnwth")]
 position = Vector2(200, 0)
+collision_layer = 2
+collision_mask = 6
 player = 1
 other_player = NodePath("../TugPlayer")
 
 [node name="Trophy" type="RigidBody2D" parent="."]
 unique_name_in_owner = true
 visible = false
+collision_layer = 0
+collision_mask = 0
 mass = 0.1
 gravity_scale = 0.0
 linear_damp = 4.0
@@ -33,3 +46,38 @@ texture = ExtResource("2_juwlg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trophy"]
 shape = SubResource("RectangleShape2D_mkwhn")
+
+[node name="Chainsaw" type="Area2D" parent="."]
+position = Vector2(0, -326)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("3_o7iot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chainsaw"]
+shape = SubResource("RectangleShape2D_swbcm")
+
+[node name="SpriteContainer" type="Node2D" parent="Chainsaw"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Chainsaw/SpriteContainer"]
+position = Vector2(0, 30)
+color = Color(0.6, 0.6, 0.6, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+
+[node name="BarrierLeft" type="StaticBody2D" parent="."]
+position = Vector2(-100, -350)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarrierLeft"]
+shape = SubResource("SegmentShape2D_88seb")
+
+[node name="BarrierRight" type="StaticBody2D" parent="."]
+position = Vector2(100, -350)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarrierRight"]
+shape = SubResource("SegmentShape2D_88seb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("4_88seb")]

@@ -1,14 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvpj11elmui3x"]
+[gd_scene load_steps=6 format=3 uid="uid://dvpj11elmui3x"]
 
 [ext_resource type="Script" uid="uid://fr0wjcw4av83" path="res://scripts/tug_player.gd" id="1_7wpad"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_nox0v"]
+[ext_resource type="Script" uid="uid://b18r15oxhkuxa" path="res://scripts/arm_container.gd" id="3_nox0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wpad"]
+size = Vector2(117, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nox0v"]
+size = Vector2(60, 60)
 
 [node name="TugPlayer" type="RigidBody2D"]
 mass = 0.1
 gravity_scale = 0.0
+lock_rotation = true
 linear_damp = 4.0
 script = ExtResource("1_7wpad")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nox0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_7wpad")
+
+[node name="ArmContainer" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_nox0v")
+
+[node name="Polygon2D" type="Polygon2D" parent="ArmContainer"]
+position = Vector2(0, 30)
+color = Color(0.6, 0.318, 0.318, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArmContainer"]
+position = Vector2(0, 30)
+shape = SubResource("RectangleShape2D_nox0v")
