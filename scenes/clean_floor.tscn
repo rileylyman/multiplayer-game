@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://x4axdgk5r4xy"]
+
+[ext_resource type="PackedScene" uid="uid://b5ov5o7gp0em1" path="res://scenes/torso.tscn" id="1_unwwb"]
+[ext_resource type="PackedScene" uid="uid://dusaf4pume4ks" path="res://scenes/clean_player.tscn" id="2_d8c6d"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rf0mg"]
+a = Vector2(575, -4)
+b = Vector2(-576, -4)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_unwwb"]
+a = Vector2(-1, 327)
+b = Vector2(0, -326)
+
+[node name="CleanFloor" type="Node2D"]
+
+[node name="LowerBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowerBoundary"]
+position = Vector2(0, 330)
+shape = SubResource("SegmentShape2D_rf0mg")
+
+[node name="MiddleBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleBoundary"]
+position = Vector2(1, 3)
+shape = SubResource("SegmentShape2D_unwwb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Torso" parent="." instance=ExtResource("1_unwwb")]
+position = Vector2(-300, -140)
+
+[node name="Torso2" parent="." instance=ExtResource("1_unwwb")]
+position = Vector2(300, -140)
+
+[node name="CleanPlayer" parent="." instance=ExtResource("2_d8c6d")]
+position = Vector2(-300, 185)
+
+[node name="CleanPlayer2" parent="." instance=ExtResource("2_d8c6d")]
+position = Vector2(300, 185)
+player = 1

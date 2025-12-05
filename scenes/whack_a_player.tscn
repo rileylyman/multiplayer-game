@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ekh5ebn34hip"]
+
+[ext_resource type="Script" uid="uid://bskbr7hwabgcy" path="res://scripts/whack_a_player.gd" id="1_x53ts"]
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_nury8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvd1j"]
+size = Vector2(64, 63)
+
+[node name="WhackAPlayer" type="CharacterBody2D"]
+script = ExtResource("1_x53ts")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nury8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_jvd1j")

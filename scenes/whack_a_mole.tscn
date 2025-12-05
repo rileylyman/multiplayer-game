@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://6yexv2ttrxcp"]
+
+[ext_resource type="Script" uid="uid://bk8if0mcumnv2" path="res://scripts/hole_container.gd" id="1_gbl5v"]
+[ext_resource type="PackedScene" uid="uid://dx7h4ahj8pbhg" path="res://scenes/hole.tscn" id="2_htaed"]
+[ext_resource type="PackedScene" uid="uid://ekh5ebn34hip" path="res://scenes/whack_a_player.tscn" id="3_1j4dy"]
+[ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_gbl5v"]
+
+[node name="WhackAMole" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HoleContainer" type="Node2D" parent="."]
+script = ExtResource("1_gbl5v")
+
+[node name="Hole" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(-332, -108)
+
+[node name="Hole9" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(-457, 117)
+
+[node name="Hole10" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(416, -212)
+
+[node name="Hole11" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(431, 213)
+
+[node name="Hole12" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(-466, -246)
+
+[node name="Hole2" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(-243, 172)
+
+[node name="Hole3" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(21, 208)
+
+[node name="Hole4" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(194, 73)
+
+[node name="Hole5" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(-107, -24)
+
+[node name="Hole6" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(193, -161)
+
+[node name="Hole7" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(415, -2)
+
+[node name="Hole8" parent="HoleContainer" instance=ExtResource("2_htaed")]
+position = Vector2(-24, -216)
+
+[node name="WhackAPlayer" parent="." instance=ExtResource("3_1j4dy")]
+
+[node name="WhackAPlayer2" parent="." instance=ExtResource("3_1j4dy")]
+position = Vector2(1, 0)
+player = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("4_gbl5v")]

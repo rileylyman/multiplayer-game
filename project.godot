@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="multiplayer-game"
-run/main_scene="uid://du31heba8joal"
+run/main_scene="uid://x4axdgk5r4xy"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Utils="*res://scripts/utils.gd"
 GameManager="*res://scripts/game_manager.gd"
+
+[global_group]
+
+splatter=""
 
 [input]
 
