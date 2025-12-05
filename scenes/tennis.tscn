@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://du31heba8joal"]
+
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_5o0wp"]
+[ext_resource type="Script" uid="uid://b0xxy4abjc0nx" path="res://scripts/tennis_ball.gd" id="3_5o0wp"]
+[ext_resource type="PackedScene" uid="uid://c42odptjcafw1" path="res://scenes/tennis_player.tscn" id="3_jvd1j"]
+[ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_jvd1j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8kcq"]
+size = Vector2(32, 32)
+
+[node name="Tennis" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TargetTracker" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_5o0wp")
+
+[node name="TennisBall" type="Area2D" parent="."]
+script = ExtResource("3_5o0wp")
+
+[node name="Shadow" type="Sprite2D" parent="TennisBall"]
+self_modulate = Color(0, 0, 0, 0.49019608)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_5o0wp")
+
+[node name="Sprite" type="Sprite2D" parent="TennisBall"]
+self_modulate = Color(0.4833336, 0, 1, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_5o0wp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TennisBall"]
+shape = SubResource("RectangleShape2D_f8kcq")
+
+[node name="TennisPlayer" parent="." instance=ExtResource("3_jvd1j")]
+position = Vector2(-500, 0)
+
+[node name="TennisPlayer2" parent="." instance=ExtResource("3_jvd1j")]
+position = Vector2(500, 0)
+player = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("4_jvd1j")]
