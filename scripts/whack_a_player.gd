@@ -4,7 +4,7 @@ class_name WhackAPlayer extends CharacterBody2D
 @export var speed := 300.0
 @export var bite_duration := 0.5
 
-@onready var other_player: WhackAPlayer = $"/root/WhackAMole/WhackAPlayer2" if player == Utils.PlayerType.PLAYER_1 else $"/root/WhackAMole/WhackAPlayer"
+@onready var other_player: WhackAPlayer = $"/root/SceneRoot/WhackAPlayer2" if player == Utils.PlayerType.PLAYER_1 else $"/root/SceneRoot/WhackAPlayer"
 @onready var sprite: Sprite2D = $Sprite2D
 
 var _frozen := false
@@ -29,4 +29,4 @@ func _clamp_pos_to_screen() -> void:
     global_position = global_position.clamp(screen_rect.position + sprite_rect.size / 2, screen_rect.end - sprite_rect.size / 2)
 
 func is_biting() -> bool:
-    return Utils.is_player_action_just_pressed("button1", player) or Utils.is_player_action_just_pressed("button2", player)
+    return Utils.is_player_action_just_pressed("button1", player)

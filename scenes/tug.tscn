@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://di7okftxl6jka"]
+[gd_scene load_steps=13 format=3 uid="uid://di7okftxl6jka"]
 
+[ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_84nfy"]
 [ext_resource type="PackedScene" uid="uid://dvpj11elmui3x" path="res://scenes/tug_player.tscn" id="1_jnwth"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_juwlg"]
 [ext_resource type="Script" uid="uid://6b2nhc0pya2" path="res://scripts/chainsaw.gd" id="3_o7iot"]
@@ -43,7 +44,12 @@ shader_parameter/clock_feather = 0.0
 shader_parameter/progress = 0.0
 shader_parameter/progress_bias = Vector2(0, 0)
 
-[node name="Node2D" type="Node2D"]
+[node name="SceneRoot" type="Node2D"]
+
+[node name="Bg1" type="Sprite2D" parent="."]
+position = Vector2(0.666687, 0.5)
+scale = Vector2(0.6027778, 0.6027778)
+texture = ExtResource("1_84nfy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 metadata/_edit_lock_ = true
@@ -108,13 +114,11 @@ position = Vector2(100, -350)
 shape = SubResource("SegmentShape2D_88seb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("4_88seb")]
+visible = false
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="Transition" type="Sprite2D" parent="CanvasLayer2"]
+[node name="Transition" type="Sprite2D" parent="CanvasLayer"]
 self_modulate = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_4iktf")
 position = Vector2(568, 326.5)

@@ -4,18 +4,17 @@ class_name Chainsaw extends Area2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var _sprite_height := 60.0
 @onready var _screen_height := Utils.wssr().size.y
-@onready var player1: RigidBody2D = $"/root/Node2D/TugPlayer"
-@onready var player2: RigidBody2D = $"/root/Node2D/TugPlayer2"
+@onready var player1: RigidBody2D = $"/root/SceneRoot/TugPlayer"
+@onready var player2: RigidBody2D = $"/root/SceneRoot/TugPlayer2"
 
 
 var _curr_time_s := 0.0
 
 func _ready() -> void:
     body_entered.connect(func(body):
-        if GameManager.tug_over or (body != player1 and body != player2):
+        if body != player1 and body != player2:
             return
 
-        GameManager.tug_over = true
         player1.chainsaw_hit(body == player1)
         player2.chainsaw_hit(body == player2)
     )

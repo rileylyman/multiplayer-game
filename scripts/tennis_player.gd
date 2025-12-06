@@ -3,7 +3,7 @@ class_name TennisPlayer extends CharacterBody2D
 @export var player := Utils.PlayerType.PLAYER_1
 @export var speed := 300.0
 
-@onready var other_player: TennisPlayer = $"/root/Tennis/TennisPlayer2" if player == Utils.PlayerType.PLAYER_1 else $"/root/Tennis/TennisPlayer"
+@onready var other_player: TennisPlayer = $"/root/SceneRoot/TennisPlayer2" if player == Utils.PlayerType.PLAYER_1 else $"/root/SceneRoot/TennisPlayer"
 @onready var sprite: Sprite2D = $Sprite2D
 
 var ball: TennisBall = null
@@ -30,8 +30,9 @@ func _physics_process(_delta: float) -> void:
     _clamp_pos_to_screen()
 
     if ball != null and ball.is_near_ground():
-        if Utils.is_player_action_just_pressed("button1", player) or Utils.is_player_action_just_pressed("button2", player):
+        if Utils.is_player_action_just_pressed("button1", player):
             ball.hit_towards(_get_hit_to_point())
+            GameManager.add_score(1, player)
 
 func _clamp_pos_to_screen() -> void:
     var screen_rect = Utils.get_global_viewport_rect()

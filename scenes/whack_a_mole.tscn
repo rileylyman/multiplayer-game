@@ -1,11 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://6yexv2ttrxcp"]
+[gd_scene load_steps=11 format=3 uid="uid://6yexv2ttrxcp"]
 
 [ext_resource type="Script" uid="uid://bk8if0mcumnv2" path="res://scripts/hole_container.gd" id="1_gbl5v"]
+[ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_htaed"]
 [ext_resource type="PackedScene" uid="uid://dx7h4ahj8pbhg" path="res://scenes/hole.tscn" id="2_htaed"]
 [ext_resource type="PackedScene" uid="uid://ekh5ebn34hip" path="res://scenes/whack_a_player.tscn" id="3_1j4dy"]
 [ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_gbl5v"]
+[ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="6_soya0"]
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="7_r2ca5"]
 
-[node name="WhackAMole" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_xpxu4"]
+offsets = PackedFloat32Array(0.99310344, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dftwi"]
+gradient = SubResource("Gradient_xpxu4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eywyl"]
+shader = ExtResource("6_soya0")
+shader_parameter/use_sprite_alpha = true
+shader_parameter/use_transition_texture = false
+shader_parameter/transition_texture = SubResource("GradientTexture1D_dftwi")
+shader_parameter/transition_type = 3
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(1, 1)
+shader_parameter/rotation_angle = 0.0
+shader_parameter/stagger = Vector2(0, 0)
+shader_parameter/stagger_frequency = Vector2i(2, 2)
+shader_parameter/flip_frequency = Vector2i(1, 1)
+shader_parameter/basic_feather = 0.0
+shader_parameter/use_mask_size = false
+shader_parameter/mask_size = Vector2(100, 100)
+shader_parameter/edges = 6
+shader_parameter/shape_feather = 0.1
+shader_parameter/sectors = 1
+shader_parameter/clock_feather = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/progress_bias = Vector2(0, 0)
+
+[node name="SceneRoot" type="Node2D"]
+
+[node name="Bg1" type="Sprite2D" parent="."]
+scale = Vector2(0.6001736, 0.6018519)
+texture = ExtResource("1_htaed")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -55,6 +91,12 @@ position = Vector2(1, 0)
 player = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("4_gbl5v")]
+
+[node name="Transition" type="Sprite2D" parent="CanvasLayer"]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_eywyl")
+position = Vector2(568, 326.5)
+scale = Vector2(9.875, 6.1015625)
+texture = ExtResource("7_r2ca5")

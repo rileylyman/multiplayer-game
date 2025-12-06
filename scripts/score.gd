@@ -25,9 +25,10 @@ func set_sub_texts() -> void:
     right_add.text = "+%d" % GameManager.score_adds[1]
 
 func _tick_up(idx: int) -> void:
+    var interval = min(0.1, 1.5 / GameManager.score_adds[idx])
     while GameManager.score_adds[idx] > 0:
         GameManager.player_scores[idx] += 1
         GameManager.score_adds[idx] -= 1
         set_main_text()
         set_sub_texts()
-        await get_tree().create_timer(0.1).timeout
+        await get_tree().create_timer(interval).timeout

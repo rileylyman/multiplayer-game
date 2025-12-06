@@ -10,8 +10,8 @@ enum HumanState {
 
 @onready var human: Area2D = $ClipMask/Human
 @onready var human_sprite: Sprite2D = $ClipMask/Human/Sprite
-@onready var player1: WhackAPlayer = $"/root/WhackAMole/WhackAPlayer"
-@onready var player2: WhackAPlayer = $"/root/WhackAMole/WhackAPlayer2"
+@onready var player1: WhackAPlayer = $"/root/SceneRoot/WhackAPlayer"
+@onready var player2: WhackAPlayer = $"/root/SceneRoot/WhackAPlayer2"
 
 @export var human_hidden_height := 0.0
 @export var human_peek_height := 0.0
@@ -82,8 +82,10 @@ func _handle_shown() -> void:
         _switch_state(HumanState.DEAD)
         if player1_bite:
             player1.freeze()
+            GameManager.add_score(1, Utils.PlayerType.PLAYER_1)
         if player2_bite:
             player2.freeze()
+            GameManager.add_score(1, Utils.PlayerType.PLAYER_2)
         return
 
 func _handle_dead() -> void:

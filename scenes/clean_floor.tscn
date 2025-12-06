@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://x4axdgk5r4xy"]
+[gd_scene load_steps=12 format=3 uid="uid://x4axdgk5r4xy"]
 
+[ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_d8c6d"]
 [ext_resource type="PackedScene" uid="uid://b5ov5o7gp0em1" path="res://scenes/torso.tscn" id="1_unwwb"]
 [ext_resource type="PackedScene" uid="uid://dusaf4pume4ks" path="res://scenes/clean_player.tscn" id="2_d8c6d"]
+[ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_ma3eh"]
+[ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="5_u0psv"]
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="6_ve162"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rf0mg"]
 a = Vector2(575, -4)
@@ -11,7 +15,40 @@ b = Vector2(-576, -4)
 a = Vector2(-1, 327)
 b = Vector2(0, -326)
 
-[node name="CleanFloor" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_k5137"]
+offsets = PackedFloat32Array(0.99310344, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ma3eh"]
+gradient = SubResource("Gradient_k5137")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u8r4i"]
+shader = ExtResource("5_u0psv")
+shader_parameter/use_sprite_alpha = true
+shader_parameter/use_transition_texture = false
+shader_parameter/transition_texture = SubResource("GradientTexture1D_ma3eh")
+shader_parameter/transition_type = 3
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(1, 1)
+shader_parameter/rotation_angle = 0.0
+shader_parameter/stagger = Vector2(0, 0)
+shader_parameter/stagger_frequency = Vector2i(2, 2)
+shader_parameter/flip_frequency = Vector2i(1, 1)
+shader_parameter/basic_feather = 0.0
+shader_parameter/use_mask_size = false
+shader_parameter/mask_size = Vector2(100, 100)
+shader_parameter/edges = 6
+shader_parameter/shape_feather = 0.1
+shader_parameter/sectors = 1
+shader_parameter/clock_feather = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/progress_bias = Vector2(0, 0)
+
+[node name="SceneRoot" type="Node2D"]
+
+[node name="Bg1" type="Sprite2D" parent="."]
+scale = Vector2(0.6001736, 0.6018519)
+texture = ExtResource("1_d8c6d")
 
 [node name="LowerBoundary" type="StaticBody2D" parent="."]
 
@@ -39,3 +76,14 @@ position = Vector2(-300, 185)
 [node name="CleanPlayer2" parent="." instance=ExtResource("2_d8c6d")]
 position = Vector2(300, 185)
 player = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("4_ma3eh")]
+
+[node name="Transition" type="Sprite2D" parent="CanvasLayer"]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_u8r4i")
+position = Vector2(568, 326.5)
+scale = Vector2(9.875, 6.1015625)
+texture = ExtResource("6_ve162")

@@ -1,18 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://du31heba8joal"]
+[gd_scene load_steps=11 format=3 uid="uid://du31heba8joal"]
 
+[ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_f8kcq"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_5o0wp"]
 [ext_resource type="Script" uid="uid://b0xxy4abjc0nx" path="res://scripts/tennis_ball.gd" id="3_5o0wp"]
 [ext_resource type="PackedScene" uid="uid://c42odptjcafw1" path="res://scenes/tennis_player.tscn" id="3_jvd1j"]
 [ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_jvd1j"]
+[ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="6_vnkel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8kcq"]
 size = Vector2(32, 32)
 
-[node name="Tennis" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_l67it"]
+offsets = PackedFloat32Array(0.99310344, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ge6i"]
+gradient = SubResource("Gradient_l67it")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o66nd"]
+shader = ExtResource("6_vnkel")
+shader_parameter/use_sprite_alpha = true
+shader_parameter/use_transition_texture = false
+shader_parameter/transition_texture = SubResource("GradientTexture1D_4ge6i")
+shader_parameter/transition_type = 3
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(1, 1)
+shader_parameter/rotation_angle = 0.0
+shader_parameter/stagger = Vector2(0, 0)
+shader_parameter/stagger_frequency = Vector2i(2, 2)
+shader_parameter/flip_frequency = Vector2i(1, 1)
+shader_parameter/basic_feather = 0.0
+shader_parameter/use_mask_size = false
+shader_parameter/mask_size = Vector2(100, 100)
+shader_parameter/edges = 6
+shader_parameter/shape_feather = 0.1
+shader_parameter/sectors = 1
+shader_parameter/clock_feather = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/progress_bias = Vector2(0, 0)
+
+[node name="SceneRoot" type="Node2D"]
+
+[node name="Bg1" type="Sprite2D" parent="."]
+scale = Vector2(0.6001736, 0.6018519)
+texture = ExtResource("1_f8kcq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="TargetTracker" type="Sprite2D" parent="."]
+visible = false
 self_modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_5o0wp")
@@ -43,3 +79,10 @@ player = 1
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("4_jvd1j")]
+
+[node name="Transition" type="Sprite2D" parent="CanvasLayer"]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_o66nd")
+position = Vector2(568, 326.5)
+scale = Vector2(9.875, 6.1015625)
+texture = ExtResource("2_5o0wp")

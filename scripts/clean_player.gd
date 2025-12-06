@@ -18,7 +18,8 @@ func _physics_process(_delta: float) -> void:
             continue
         
         if Utils.is_player_action_just_pressed("button1", player):
-            splatter.take_damage()
+            if splatter.take_damage():
+                GameManager.add_score(1, player)
 
 func _clamp_pos_to_screen() -> void:
     var screen_rect = Utils.get_global_viewport_rect()
