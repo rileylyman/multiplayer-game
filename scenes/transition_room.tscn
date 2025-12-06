@@ -1,0 +1,298 @@
+[gd_scene load_steps=15 format=3 uid="uid://dvmaqplyh4m3"]
+
+[ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="1_7rfiw"]
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="1_v5gkh"]
+[ext_resource type="Script" uid="uid://d0g2qckyb4v8y" path="res://scripts/bobbing_sprite.gd" id="2_f70u8"]
+[ext_resource type="Script" uid="uid://dycx4c7xh8a1o" path="res://scripts/transition_animation.gd" id="3_f70u8"]
+[ext_resource type="Script" uid="uid://dakhk22wq0jhi" path="res://scripts/score.gd" id="3_skmwq"]
+
+[sub_resource type="Gradient" id="Gradient_ckjs0"]
+offsets = PackedFloat32Array(0.99310344, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ge6i"]
+gradient = SubResource("Gradient_ckjs0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33eg8"]
+shader = ExtResource("1_7rfiw")
+shader_parameter/use_sprite_alpha = true
+shader_parameter/use_transition_texture = false
+shader_parameter/transition_texture = SubResource("GradientTexture1D_4ge6i")
+shader_parameter/transition_type = 3
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(1, 1)
+shader_parameter/rotation_angle = 0.0
+shader_parameter/stagger = Vector2(0, 0)
+shader_parameter/stagger_frequency = Vector2i(2, 2)
+shader_parameter/flip_frequency = Vector2i(1, 1)
+shader_parameter/basic_feather = 0.0
+shader_parameter/use_mask_size = false
+shader_parameter/mask_size = Vector2(100, 100)
+shader_parameter/edges = 6
+shader_parameter/shape_feather = 0.1
+shader_parameter/sectors = 1
+shader_parameter/clock_feather = 0.0
+shader_parameter/progress = 1.05
+shader_parameter/progress_bias = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5gkh"]
+font_size = 82
+
+[sub_resource type="LabelSettings" id="LabelSettings_f70u8"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_skmwq"]
+font_size = 82
+
+[sub_resource type="Animation" id="Animation_v5gkh"]
+resource_name = "main"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Score/LeftAdd:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.5916667, 4.0916667, 6.6, 7.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Score/RightAdd:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.5916667, 4.1, 6.608333, 7.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/Score")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"add_scores"
+}]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/Score:offset_top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-1000, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0, 482, -0.244, 0, 0.265, 0, 482, -0.915, 0, 1, 0, 1279.4224, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1.5000001, 8.5, 9, 12, 13.033334)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftPlayer:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(3, 0, 0, 0, 0),
+"points": PackedFloat32Array(861.99994, -0.25, 0, 0.25, 0, 490, -0.5250001, 0, 0.5250001, 0, 490, -0.5250001, 0, 0.5250001, 0, 490, -0.5250001, 0, 0.5250001, 0, 861.99994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(2, 3, 8.5, 12.000001, 13.033334)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightPlayer:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(862, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0, 862, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(2.5666666, 3.5666668, 9, 12.000001, 13.033334)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control/Instruction:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(3, 0, 0, 0),
+"points": PackedFloat32Array(-500, -0.12500024, -140.25, 0.12500024, 140.25, 100, -0.12500024, 0, 0.12500024, 0, 100, -0.12500024, 0, 0.12500024, 0, -500, -0.12500024, -140.25, 0.12500024, 140.25),
+"times": PackedFloat32Array(9, 9.500001, 12.000001, 13.033334)
+}
+
+[sub_resource type="Animation" id="Animation_f70u8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Score/LeftAdd:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Score/RightAdd:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftPlayer:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(861.99994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightPlayer:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(862, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/Score:offset_top")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(482, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control/Instruction:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(61, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skmwq"]
+_data = {
+&"RESET": SubResource("Animation_f70u8"),
+&"main": SubResource("Animation_v5gkh")
+}
+
+[node name="TransitionRoom" type="Node2D"]
+
+[node name="Transition" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_33eg8")
+position = Vector2(568, 326.5)
+scale = Vector2(9.875, 6.1015625)
+texture = ExtResource("1_v5gkh")
+
+[node name="LeftPlayer" type="Node2D" parent="."]
+position = Vector2(169, 861.99994)
+
+[node name="Sprite" type="Sprite2D" parent="LeftPlayer"]
+scale = Vector2(2.25, 2.266)
+texture = ExtResource("1_v5gkh")
+script = ExtResource("2_f70u8")
+
+[node name="RightPlayer" type="Node2D" parent="."]
+position = Vector2(982, 862)
+
+[node name="RightPlayer" type="Sprite2D" parent="RightPlayer"]
+scale = Vector2(2.25, 2.266)
+texture = ExtResource("1_v5gkh")
+script = ExtResource("2_f70u8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -149.0
+offset_top = 482.0
+offset_right = 150.0
+offset_bottom = 595.0
+grow_horizontal = 2
+text = "80  -  70"
+label_settings = SubResource("LabelSettings_v5gkh")
+script = ExtResource("3_skmwq")
+
+[node name="LeftAdd" type="Label" parent="CanvasLayer/Control/Score"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 56.5
+offset_top = 91.0
+offset_right = 355.5
+offset_bottom = 204.0
+text = "+5"
+label_settings = SubResource("LabelSettings_f70u8")
+
+[node name="RightAdd" type="Label" parent="CanvasLayer/Control/Score"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 258.5
+offset_top = 91.0
+offset_right = 557.5
+offset_bottom = 204.0
+text = "+5"
+label_settings = SubResource("LabelSettings_f70u8")
+
+[node name="Instruction" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.5
+offset_top = 61.0
+offset_right = 89.50079
+offset_bottom = 290.00012
+grow_horizontal = 2
+text = "Bite!
+"
+label_settings = SubResource("LabelSettings_skmwq")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_skmwq")
+}
+script = ExtResource("3_f70u8")

@@ -112,13 +112,13 @@ player2_start = NodePath("../RightStartKey")
 transition = NodePath("../CanvasLayer2/Transition")
 
 [node name="LeftPlayer" type="Sprite2D" parent="."]
-position = Vector2(171, 497.02408)
+position = Vector2(171, 490)
 scale = Vector2(2.25, 2.266)
 texture = ExtResource("1_jaeev")
 script = ExtResource("2_bodal")
 
 [node name="RightPlayer" type="Sprite2D" parent="."]
-position = Vector2(982.99994, 495.02402)
+position = Vector2(983, 490)
 scale = Vector2(2.25, 2.266)
 texture = ExtResource("1_jaeev")
 script = ExtResource("2_bodal")

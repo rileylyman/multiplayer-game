@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://di7okftxl6jka"]
+[gd_scene load_steps=12 format=3 uid="uid://di7okftxl6jka"]
 
 [ext_resource type="PackedScene" uid="uid://dvpj11elmui3x" path="res://scenes/tug_player.tscn" id="1_jnwth"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_juwlg"]
 [ext_resource type="Script" uid="uid://6b2nhc0pya2" path="res://scripts/chainsaw.gd" id="3_o7iot"]
 [ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_88seb"]
+[ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="5_usvmp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkwhn"]
 
@@ -12,6 +13,35 @@ size = Vector2(60, 0)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_88seb"]
 b = Vector2(0, 1000)
+
+[sub_resource type="Gradient" id="Gradient_84nfy"]
+offsets = PackedFloat32Array(0.99310344, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kpe8c"]
+gradient = SubResource("Gradient_84nfy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4iktf"]
+shader = ExtResource("5_usvmp")
+shader_parameter/use_sprite_alpha = true
+shader_parameter/use_transition_texture = false
+shader_parameter/transition_texture = SubResource("GradientTexture1D_kpe8c")
+shader_parameter/transition_type = 3
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(1, 1)
+shader_parameter/rotation_angle = 0.0
+shader_parameter/stagger = Vector2(0, 0)
+shader_parameter/stagger_frequency = Vector2i(2, 2)
+shader_parameter/flip_frequency = Vector2i(1, 1)
+shader_parameter/basic_feather = 0.0
+shader_parameter/use_mask_size = false
+shader_parameter/mask_size = Vector2(100, 100)
+shader_parameter/edges = 6
+shader_parameter/shape_feather = 0.1
+shader_parameter/sectors = 1
+shader_parameter/clock_feather = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/progress_bias = Vector2(0, 0)
 
 [node name="Node2D" type="Node2D"]
 
@@ -81,3 +111,12 @@ shape = SubResource("SegmentShape2D_88seb")
 visible = false
 
 [node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("4_88seb")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Transition" type="Sprite2D" parent="CanvasLayer2"]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_4iktf")
+position = Vector2(568, 326.5)
+scale = Vector2(9.875, 6.1015625)
+texture = ExtResource("2_juwlg")
