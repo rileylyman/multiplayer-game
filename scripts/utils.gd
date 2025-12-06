@@ -20,6 +20,12 @@ func is_player_action_just_pressed(action: String, player: PlayerType) -> bool:
     else:
         return Input.is_action_just_pressed(action + "_alt")
 
+func is_player_action_pressed(action: String, player: PlayerType) -> bool:
+    if player == PlayerType.PLAYER_1:
+        return Input.is_action_pressed(action)
+    else:
+        return Input.is_action_pressed(action + "_alt")
+
 func get_player_move_vector(action_left: String, action_right: String, action_up: String, action_down: String, player: PlayerType) -> Vector2:
     if player == PlayerType.PLAYER_1:
         return Input.get_vector(action_left, action_right, action_up, action_down)

@@ -1,0 +1,291 @@
+[gd_scene load_steps=27 format=3 uid="uid://bolqmlxppyiox"]
+
+[ext_resource type="Script" uid="uid://dog2de40l8mju" path="res://scripts/start_manager.gd" id="1_0auqf"]
+[ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="1_jaeev"]
+[ext_resource type="Script" uid="uid://d0g2qckyb4v8y" path="res://scripts/bobbing_sprite.gd" id="2_bodal"]
+[ext_resource type="Texture2D" uid="uid://ruu6qx4sdgdm" path="res://art/Keyboard Letters and Symbols.png" id="2_u80x2"]
+[ext_resource type="PackedScene" uid="uid://cbud60js4idit" path="res://scenes/start_key.tscn" id="3_kdmts"]
+[ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="6_y16t7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8uic"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1pfr"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsp51"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(96, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u80x2"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdmts"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0auqf"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8nf6"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bodal"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(80, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y16t7"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ge6i"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8itgj"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tn317"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgjjs"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nvso"]
+atlas = ExtResource("2_u80x2")
+region = Rect2(112, 48, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ewcy1"]
+font_size = 82
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jaeev"]
+font_size = 42
+
+[sub_resource type="LabelSettings" id="LabelSettings_u80x2"]
+font_size = 26
+
+[sub_resource type="Gradient" id="Gradient_y16t7"]
+offsets = PackedFloat32Array(0.99310344, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ge6i"]
+gradient = SubResource("Gradient_y16t7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ge6i"]
+shader = ExtResource("6_y16t7")
+shader_parameter/use_sprite_alpha = true
+shader_parameter/use_transition_texture = false
+shader_parameter/transition_texture = SubResource("GradientTexture1D_4ge6i")
+shader_parameter/transition_type = 3
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(1, 1)
+shader_parameter/rotation_angle = 0.0
+shader_parameter/stagger = Vector2(0, 0)
+shader_parameter/stagger_frequency = Vector2i(2, 2)
+shader_parameter/flip_frequency = Vector2i(1, 1)
+shader_parameter/basic_feather = 0.0
+shader_parameter/use_mask_size = false
+shader_parameter/mask_size = Vector2(100, 100)
+shader_parameter/edges = 6
+shader_parameter/shape_feather = 0.1
+shader_parameter/sectors = 1
+shader_parameter/clock_feather = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/progress_bias = Vector2(0, 0)
+
+[node name="Start" type="Node2D"]
+
+[node name="StartManager" type="Node2D" parent="." node_paths=PackedStringArray("player1_start", "player2_start", "transition")]
+script = ExtResource("1_0auqf")
+player1_start = NodePath("../LeftStartKey")
+player2_start = NodePath("../RightStartKey")
+transition = NodePath("../CanvasLayer2/Transition")
+
+[node name="LeftPlayer" type="Sprite2D" parent="."]
+position = Vector2(171, 497.02408)
+scale = Vector2(2.25, 2.266)
+texture = ExtResource("1_jaeev")
+script = ExtResource("2_bodal")
+
+[node name="RightPlayer" type="Sprite2D" parent="."]
+position = Vector2(982.99994, 495.02402)
+scale = Vector2(2.25, 2.266)
+texture = ExtResource("1_jaeev")
+script = ExtResource("2_bodal")
+
+[node name="LeftStartKey" parent="." instance=ExtResource("3_kdmts")]
+position = Vector2(152, 313)
+
+[node name="RightStartKey" parent="." instance=ExtResource("3_kdmts")]
+position = Vector2(971, 313)
+texture = SubResource("AtlasTexture_r8uic")
+player = 1
+
+[node name="Sprite" parent="RightStartKey/ClipMask" index="0"]
+texture = SubResource("AtlasTexture_x1pfr")
+
+[node name="LeftKeys" type="Node2D" parent="."]
+
+[node name="Sprite2D7" type="Sprite2D" parent="LeftKeys"]
+position = Vector2(438, 479)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_gsp51")
+
+[node name="Sprite2D8" type="Sprite2D" parent="LeftKeys"]
+position = Vector2(382, 530)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_u80x2")
+
+[node name="Sprite2D9" type="Sprite2D" parent="LeftKeys"]
+position = Vector2(438, 530)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_kdmts")
+
+[node name="Sprite2D10" type="Sprite2D" parent="LeftKeys"]
+position = Vector2(494, 530)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_0auqf")
+
+[node name="Sprite2D11" type="Sprite2D" parent="LeftKeys"]
+position = Vector2(410, 605)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_m8nf6")
+
+[node name="Sprite2D12" type="Sprite2D" parent="LeftKeys"]
+position = Vector2(466, 605)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_bodal")
+
+[node name="RightKeys" type="Node2D" parent="."]
+
+[node name="Sprite2D13" type="Sprite2D" parent="RightKeys"]
+position = Vector2(728, 479)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_y16t7")
+
+[node name="Sprite2D14" type="Sprite2D" parent="RightKeys"]
+position = Vector2(672, 530)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_4ge6i")
+
+[node name="Sprite2D15" type="Sprite2D" parent="RightKeys"]
+position = Vector2(728, 530)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_8itgj")
+
+[node name="Sprite2D16" type="Sprite2D" parent="RightKeys"]
+position = Vector2(784, 530)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_tn317")
+
+[node name="Sprite2D17" type="Sprite2D" parent="RightKeys"]
+position = Vector2(698, 605)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_pgjjs")
+
+[node name="Sprite2D18" type="Sprite2D" parent="RightKeys"]
+position = Vector2(754, 605)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_1nvso")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.098
+anchor_right = 0.5
+anchor_bottom = 0.608
+grow_horizontal = 2
+text = "HELLHOUNDS"
+label_settings = SubResource("LabelSettings_ewcy1")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4965278
+anchor_top = 0.45679012
+anchor_right = 0.4965278
+anchor_bottom = 0.45679012
+offset_left = -484.0
+offset_top = -72.0
+offset_right = -322.0
+offset_bottom = -14.0
+text = "Player 1"
+label_settings = SubResource("LabelSettings_jaeev")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4965278
+anchor_top = 0.44907406
+anchor_right = 0.4965278
+anchor_bottom = 0.44907406
+offset_left = 326.0
+offset_top = -68.0
+offset_right = 488.0
+offset_bottom = -10.0
+text = "Player 2"
+label_settings = SubResource("LabelSettings_jaeev")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.46875
+anchor_top = 0.56635803
+anchor_right = 0.5260417
+anchor_bottom = 0.56635803
+offset_left = -484.0
+offset_top = -72.0
+offset_right = -322.0
+offset_bottom = -14.0
+text = "Hold           to start"
+label_settings = SubResource("LabelSettings_u80x2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label5" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.1762153
+anchor_top = 0.55555534
+anchor_right = 1.2335069
+anchor_bottom = 0.55555534
+offset_left = -484.0
+offset_top = -72.0
+offset_right = -322.0
+offset_bottom = -14.0
+text = "Hold           to start"
+label_settings = SubResource("LabelSettings_u80x2")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Transition" type="Sprite2D" parent="CanvasLayer2"]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_4ge6i")
+position = Vector2(568, 326.5)
+scale = Vector2(9.875, 6.1015625)
+texture = ExtResource("1_jaeev")
+
+[editable path="RightStartKey"]
