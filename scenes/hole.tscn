@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx7h4ahj8pbhg"]
+[gd_scene load_steps=8 format=3 uid="uid://dx7h4ahj8pbhg"]
 
 [ext_resource type="Script" uid="uid://bkau70aua82xp" path="res://scripts/hole.gd" id="1_a2ebe"]
 [ext_resource type="Texture2D" uid="uid://chocmi8intnqt" path="res://art/hole.png" id="1_lerre"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="3_spnof"]
+[ext_resource type="Texture2D" uid="uid://mbqhaxff8r2n" path="res://art/personspriteone.png" id="4_spnof"]
+[ext_resource type="Texture2D" uid="uid://3dusppovc1gj" path="res://art/skeletonsprite.png" id="5_1advb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1advb"]
 radius = 80.024994
@@ -13,7 +15,7 @@ size = Vector2(73, 154)
 [node name="Hole" type="Area2D"]
 script = ExtResource("1_a2ebe")
 human_hidden_height = 130.0
-human_peek_height = 100.0
+human_peek_height = 75.0
 human_shown_height = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -29,10 +31,15 @@ position = Vector2(0, -53)
 texture = ExtResource("3_spnof")
 
 [node name="Human" type="Area2D" parent="ClipMask"]
+position = Vector2(1, 0)
 
 [node name="Sprite" type="Sprite2D" parent="ClipMask/Human"]
-scale = Vector2(0.35, 1)
-texture = ExtResource("3_spnof")
+scale = Vector2(0.042850718, 0.049165882)
+texture = ExtResource("4_spnof")
+
+[node name="skeleton" type="Sprite2D" parent="ClipMask/Human"]
+scale = Vector2(0.042850718, 0.049165882)
+texture = ExtResource("5_1advb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClipMask/Human"]
 position = Vector2(0, -1)
