@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ruu6qx4sdgdm"
-valid=false
+uid="uid://jqttxk8qej5u"
+path="res://.godot/imported/3blink.PNG-a091eaa739355182bf100912bdd54fa0.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://art/Keyboard Letters and Symbols.png"
+source_file="res://art/red dog/3blink.PNG"
+dest_files=["res://.godot/imported/3blink.PNG-a091eaa739355182bf100912bdd54fa0.ctex"]
 
 [params]
 

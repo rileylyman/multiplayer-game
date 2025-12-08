@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ruu6qx4sdgdm"
-valid=false
+uid="uid://bs5mebnlwfg3n"
+path="res://.godot/imported/red_dog_jump-7.png-c2f08c9d5078735e8af79ae0c2a648b0.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://art/Keyboard Letters and Symbols.png"
+source_file="res://art/red dog/red_dog_jump-7.png"
+dest_files=["res://.godot/imported/red_dog_jump-7.png-c2f08c9d5078735e8af79ae0c2a648b0.ctex"]
 
 [params]
 

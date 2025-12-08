@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ruu6qx4sdgdm"
-valid=false
+uid="uid://crevh6c3ru3ct"
+path="res://.godot/imported/dog_a_legs_ft2-1.png-6f8c25b750aa6a2d6f1985d6ec01454f.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://art/Keyboard Letters and Symbols.png"
+source_file="res://art/red dog/dog_a_legs_ft2-1.png"
+dest_files=["res://.godot/imported/dog_a_legs_ft2-1.png-6f8c25b750aa6a2d6f1985d6ec01454f.ctex"]
 
 [params]
 
