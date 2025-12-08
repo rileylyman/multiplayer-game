@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bolqmlxppyiox"]
+[gd_scene load_steps=28 format=3 uid="uid://bolqmlxppyiox"]
 
 [ext_resource type="Script" uid="uid://dog2de40l8mju" path="res://scripts/start_manager.gd" id="1_0auqf"]
 [ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_4ge6i"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://d0g2qckyb4v8y" path="res://scripts/bobbing_sprite.gd" id="2_bodal"]
 [ext_resource type="Texture2D" uid="uid://ruu6qx4sdgdm" path="res://art/Keyboard Letters and Symbols.png" id="2_u80x2"]
 [ext_resource type="PackedScene" uid="uid://cbud60js4idit" path="res://scenes/start_key.tscn" id="3_kdmts"]
+[ext_resource type="Texture2D" uid="uid://clgnlh1ne2um4" path="res://art/red dog/1.PNG" id="4_tn317"]
+[ext_resource type="Texture2D" uid="uid://qfw14nk5rvxl" path="res://art/blue dog/dog__b_body-1.png" id="5_m8nf6"]
 [ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="6_y16t7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgjjs"]
@@ -109,17 +111,20 @@ player1_start = NodePath("../LeftStartKey")
 player2_start = NodePath("../RightStartKey")
 transition = NodePath("../CanvasLayer/Transition")
 
-[node name="LeftPlayer" type="Sprite2D" parent="."]
-position = Vector2(171, 490)
-scale = Vector2(2.25, 2.266)
-texture = ExtResource("1_jaeev")
+[node name="LeftPlayer" type="Node2D" parent="."]
 script = ExtResource("2_bodal")
 
-[node name="RightPlayer" type="Sprite2D" parent="."]
-position = Vector2(983, 490)
-scale = Vector2(2.25, 2.266)
-texture = ExtResource("1_jaeev")
+[node name="Sprite" type="Sprite2D" parent="LeftPlayer"]
+position = Vector2(-171, 672)
+texture = ExtResource("4_tn317")
+
+[node name="RightPlayer" type="Node2D" parent="."]
 script = ExtResource("2_bodal")
+
+[node name="Sprite" type="Sprite2D" parent="RightPlayer"]
+position = Vector2(1341, 639)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_m8nf6")
 
 [node name="LeftStartKey" parent="." instance=ExtResource("3_kdmts")]
 position = Vector2(152, 313)

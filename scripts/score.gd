@@ -7,9 +7,17 @@ func _ready() -> void:
     set_main_text()
     set_sub_texts()
 
+func adds_visible(visible: bool) -> void:
+    left_add.visible = visible
+    right_add.visible = visible
+
 func add_scores() -> void:
-    _tick_up(0)
-    _tick_up(1)
+    if GameManager.score_adds[0] > GameManager.score_adds[1]:
+        _tick_up(1)
+        await _tick_up(0)
+    else:
+        _tick_up(0)
+        await _tick_up(1)
 
 # func _process(delta: float) -> void:
 #     if GameManager.score_adds[0] == 0:

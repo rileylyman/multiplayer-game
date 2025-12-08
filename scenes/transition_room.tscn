@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvmaqplyh4m3"]
+[gd_scene load_steps=19 format=3 uid="uid://dvmaqplyh4m3"]
 
 [ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="1_7rfiw"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="1_v5gkh"]
 [ext_resource type="Script" uid="uid://d0g2qckyb4v8y" path="res://scripts/bobbing_sprite.gd" id="2_f70u8"]
+[ext_resource type="Texture2D" uid="uid://clgnlh1ne2um4" path="res://art/red dog/1.PNG" id="3_33eg8"]
 [ext_resource type="Script" uid="uid://dycx4c7xh8a1o" path="res://scripts/transition_animation.gd" id="3_f70u8"]
 [ext_resource type="Script" uid="uid://dakhk22wq0jhi" path="res://scripts/score.gd" id="3_skmwq"]
+[ext_resource type="Texture2D" uid="uid://qfw14nk5rvxl" path="res://art/blue dog/dog__b_body-1.png" id="5_t55wc"]
 
 [sub_resource type="Gradient" id="Gradient_ckjs0"]
 offsets = PackedFloat32Array(0.99310344, 1)
@@ -99,8 +101,8 @@ tracks/4/path = NodePath("CanvasLayer/Control/Score:offset_top")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(482, -0.25, 0, 0.25, 0, 746, -0.00016666666, -44.000004, 0, 0),
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(745, 0, 0, 0.00016666666, 0.16666667, 746, -0.00016666666, -44.000004, 0, 0),
 "times": PackedFloat32Array(0, 0.0009999999)
 }
 tracks/5/type = "bezier"
@@ -110,9 +112,92 @@ tracks/5/path = NodePath("CanvasLayer/Control/Instruction:position:y")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(61, -0.25, 0, 0.25, 0, -143, -0.00016666666, 34.000004, 0, 0),
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-188, 0, 0, 0.00016666666, 7.5000005, -143, -0.00016666666, 34.000004, 0, 0),
 "times": PackedFloat32Array(0, 0.0009999999)
+}
+
+[sub_resource type="Animation" id="Animation_t55wc"]
+resource_name = "down"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Score/LeftAdd:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Score/RightAdd:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0083332, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/Score")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/Score:offset_top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(100, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0, 482, -0.244, 0, 0.265, 0, 482, -0.915, 0, 1, 0, 1279.4224, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8666668, 1.3666668, 4.366667, 5.4000006)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftPlayer:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(490, -0.5250001, 0, 0.5250001, 0, 490, -0.5250001, 0, 0.5250001, 0, 490, -0.5250001, 0, 0.5250001, 0, 861.99994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0333333, 0.8666668, 4.3666677, 5.4000006)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightPlayer:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(490, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0, 862, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0333333, 1.3666668, 4.3666677, 5.4000006)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control/Instruction:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-500, -0.12500024, -140.25, 0.12500024, 140.25, 100, -0.12500024, 0, 0.12500024, 0, 100, -0.12500024, 0, 0.12500024, 0, -500, -0.12500024, -140.25, 0.12500024, 140.25),
+"times": PackedFloat32Array(1.3666668, 1.8666677, 4.3666677, 5.4000006)
 }
 
 [sub_resource type="Animation" id="Animation_v5gkh"]
@@ -201,10 +286,95 @@ tracks/6/keys = {
 "times": PackedFloat32Array(9, 9.500001, 12.000001, 13.033334)
 }
 
+[sub_resource type="Animation" id="Animation_33eg8"]
+resource_name = "up"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Score/LeftAdd:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.5916667, 4.0916667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Score/RightAdd:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.5916667, 4.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/Score")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/Score:offset_top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1000, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1.5000001)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftPlayer:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(3, 0),
+"points": PackedFloat32Array(861.99994, -0.25, 0, 0.25, 0, 490, -0.5250001, 0, 0.5250001, 0),
+"times": PackedFloat32Array(2, 3)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightPlayer:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(862, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(2.5666666, 3.5666668)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control/Instruction:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-500, -0.12500024, -140.25, 0.12500024, 140.25),
+"times": PackedFloat32Array(1.5333333)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_skmwq"]
 _data = {
 &"RESET": SubResource("Animation_f70u8"),
-&"main": SubResource("Animation_v5gkh")
+&"down": SubResource("Animation_t55wc"),
+&"main": SubResource("Animation_v5gkh"),
+&"up": SubResource("Animation_33eg8")
 }
 
 [node name="SceneRoot" type="Node2D"]
@@ -218,19 +388,20 @@ texture = ExtResource("1_v5gkh")
 
 [node name="LeftPlayer" type="Node2D" parent="."]
 position = Vector2(169, 861.99994)
+script = ExtResource("2_f70u8")
 
 [node name="Sprite" type="Sprite2D" parent="LeftPlayer"]
-scale = Vector2(2.25, 2.266)
-texture = ExtResource("1_v5gkh")
-script = ExtResource("2_f70u8")
+position = Vector2(-300, 200)
+texture = ExtResource("3_33eg8")
 
 [node name="RightPlayer" type="Node2D" parent="."]
 position = Vector2(982, 862)
-
-[node name="RightPlayer" type="Sprite2D" parent="RightPlayer"]
-scale = Vector2(2.25, 2.266)
-texture = ExtResource("1_v5gkh")
 script = ExtResource("2_f70u8")
+
+[node name="Sprite" type="Sprite2D" parent="RightPlayer"]
+position = Vector2(300, 167)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_t55wc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -243,57 +414,65 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Score" type="Label" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(1152, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -149.0
-offset_top = 482.0
+offset_top = 745.0
 offset_right = 150.0
-offset_bottom = 1157.0
+offset_bottom = 1420.0
 grow_horizontal = 2
 text = "80  -  70"
 label_settings = SubResource("LabelSettings_v5gkh")
+horizontal_alignment = 1
 script = ExtResource("3_skmwq")
 
 [node name="LeftAdd" type="Label" parent="CanvasLayer/Control/Score"]
 self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1152, 0)
 layout_mode = 0
-offset_left = 56.5
-offset_top = 91.0
-offset_right = 355.5
-offset_bottom = 204.0
+offset_left = -76.5
+offset_top = 92.0
+offset_right = 1075.5
+offset_bottom = 205.0
 text = "+5"
 label_settings = SubResource("LabelSettings_f70u8")
+horizontal_alignment = 1
 
 [node name="RightAdd" type="Label" parent="CanvasLayer/Control/Score"]
 self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1152, 0)
 layout_mode = 0
-offset_left = 258.5
-offset_top = 91.0
-offset_right = 557.5
-offset_bottom = 204.0
+offset_left = 126.5
+offset_top = 92.0
+offset_right = 1278.5
+offset_bottom = 205.0
 text = "+5"
 label_settings = SubResource("LabelSettings_f70u8")
+horizontal_alignment = 1
 
 [node name="Instruction" type="Label" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(1152, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -89.0
-offset_top = 61.0
-offset_right = 90.00079
-offset_bottom = 290.00003
+offset_left = -575.49963
+offset_top = -188.0
+offset_right = 576.50037
+offset_bottom = 41.0
 grow_horizontal = 2
 text = "Bite!
 "
 label_settings = SubResource("LabelSettings_skmwq")
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("instruction")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("instruction", "score")]
 libraries = {
 &"": SubResource("AnimationLibrary_skmwq")
 }
 script = ExtResource("3_f70u8")
 instruction = NodePath("../CanvasLayer/Control/Instruction")
+score = NodePath("../CanvasLayer/Control/Score")
