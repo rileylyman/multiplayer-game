@@ -19,6 +19,7 @@ script = ExtResource("1_7wpad")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_nox0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

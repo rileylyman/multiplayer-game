@@ -16,6 +16,7 @@ extends RigidBody2D
 @onready var _arm_container: ArmContainer = $ArmContainer
 @onready var visual = $Visual
 
+
 var need_back_burst := false
 var tug_over := false
 
@@ -23,6 +24,8 @@ var _rand_factor_dir := 1
 var move_state := "idle"
 
 func _ready() -> void:
+	
+	
 	_periodic_random_impulse()
 	visual.play_state("idle")
 
@@ -41,7 +44,9 @@ func chainsaw_hit(is_self: bool) -> void:
 	if is_self:
 		move_state = "jump"
 		visual.play_state("jump")
-
+func won() -> bool:
+	return tug_over && _arm_container._desired_height > other_player._arm_container._desired_height
+	
 func _process(delta: float) -> void:
 	_curr_rand_factor += _rand_factor_dir * delta * (rand_factor_max - rand_factor_min) / rand_factor_period
 	if _curr_rand_factor > rand_factor_max or _curr_rand_factor < rand_factor_min:
@@ -83,6 +88,15 @@ func _physics_process(_delta: float) -> void:
 	if new_state != move_state:
 		move_state = new_state
 		visual.play_state(move_state)
+		
+	if tug_over:
+		if won() and move_state != "win":
+			move_state = "win"
+			visual.play_state("win")
+		if not won() and move_state != "idle":
+				move_state = "idle"
+				visual.play_state("idle")
+		return
 
 func _clamp_pos_to_screen() -> void:
 	var screen_rect = Utils.get_global_viewport_rect()

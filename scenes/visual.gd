@@ -22,7 +22,12 @@ var state_anim_map = {
 		"back":  "",
 		"mid":   "",
 		"front": "jump"
-	}
+	},
+	"win": {
+		"back":  "win",
+		"mid":   "win",
+		"front": "win"
+	},
 }
 
 func play_state(state: String) -> void:
