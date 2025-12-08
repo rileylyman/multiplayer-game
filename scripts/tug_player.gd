@@ -45,6 +45,10 @@ func chainsaw_hit(is_self: bool) -> void:
 		move_state = "jump"
 		visual.play_state("jump")
 func won() -> bool:
+	if _arm_container == null:
+		return false
+	if other_player._arm_container == null:
+		return true
 	return tug_over && _arm_container._desired_height > other_player._arm_container._desired_height
 	
 func _process(delta: float) -> void:
