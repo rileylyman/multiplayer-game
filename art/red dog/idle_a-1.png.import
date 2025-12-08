@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ruu6qx4sdgdm"
-valid=false
+uid="uid://dwlopruafrbqm"
+path="res://.godot/imported/idle_a-1.png-08341d66c454aa46bc440e45dda88700.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://art/Keyboard Letters and Symbols.png"
+source_file="res://art/red dog/idle_a-1.png"
+dest_files=["res://.godot/imported/idle_a-1.png-08341d66c454aa46bc440e45dda88700.ctex"]
 
 [params]
 

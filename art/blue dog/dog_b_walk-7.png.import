@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ruu6qx4sdgdm"
-valid=false
+uid="uid://h4mqjjp6gcl2"
+path="res://.godot/imported/dog_b_walk-7.png-be93df53c63b5e25ed6314ac8cd1370f.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://art/Keyboard Letters and Symbols.png"
+source_file="res://art/blue dog/dog_b_walk-7.png"
+dest_files=["res://.godot/imported/dog_b_walk-7.png-be93df53c63b5e25ed6314ac8cd1370f.ctex"]
 
 [params]
 
