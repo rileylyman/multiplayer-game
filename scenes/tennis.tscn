@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://du31heba8joal"]
+[gd_scene load_steps=17 format=3 uid="uid://du31heba8joal"]
 
-[ext_resource type="Script" uid="uid://b0c54piy11hgs" path="res://scripts/scene_id.gd" id="1_l67it"]
+[ext_resource type="Script" path="res://scripts/scene_id.gd" id="1_l67it"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_5o0wp"]
 [ext_resource type="Texture2D" uid="uid://cxqny5p4nij5s" path="res://art/tennis1.png" id="2_l67it"]
 [ext_resource type="Script" uid="uid://b0xxy4abjc0nx" path="res://scripts/tennis_ball.gd" id="3_5o0wp"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_jvd1j"]
 [ext_resource type="Texture2D" uid="uid://cp8v8raf4a6jd" path="res://art/tennis4.png" id="5_x0vib"]
 [ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="6_vnkel"]
+[ext_resource type="Texture2D" uid="uid://b4h8jk2ap84r3" path="res://art/skull.png" id="8_02kyq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kxsdh"]
 animations = [{
@@ -91,15 +92,15 @@ z_index = 5
 script = ExtResource("3_5o0wp")
 
 [node name="Shadow" type="Sprite2D" parent="TennisBall"]
-self_modulate = Color(0, 0, 0, 0.49019608)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_5o0wp")
+self_modulate = Color(0, 0, 0, 0.2509804)
+z_index = 2
+scale = Vector2(0.016052246, 0.016052246)
+texture = ExtResource("8_02kyq")
 
 [node name="Sprite" type="Sprite2D" parent="TennisBall"]
-self_modulate = Color(0.4833336, 0, 1, 1)
 z_index = 2
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_5o0wp")
+scale = Vector2(0.016052246, 0.016052246)
+texture = ExtResource("8_02kyq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TennisBall"]
 shape = SubResource("RectangleShape2D_f8kcq")

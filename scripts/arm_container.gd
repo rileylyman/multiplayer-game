@@ -41,7 +41,7 @@ func _update_score() -> void:
 	if _has_set_score:
 		return
 	_has_set_score = true
-	GameManager.add_score(round(_desired_height), player.player)
+	GameManager.add_score(round(_desired_height / 2.0), player.player)
 
 
 func _process(_delta: float) -> void:

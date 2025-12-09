@@ -22,13 +22,13 @@ class SceneInfo:
 @onready var scenes: Array[SceneInfo] = [
     SceneInfo.new("start", "", $StartScreenMusic, -1),
     SceneInfo.new("transition_room", "", $TransitionMusic, -1),
-    SceneInfo.new("tug", "Tug!", $TugMusic, 22.0),
+    SceneInfo.new("whack_a_mole", "Kill!", $WhackMusic, 22.0),
     SceneInfo.new("transition_room", "", $TransitionMusic, -1),
     SceneInfo.new("clean_floor", "Lick!", $CleanFloorMusic, 22.0),
     SceneInfo.new("transition_room", "", $TransitionMusic, -1),
     SceneInfo.new("tennis", "Fetch!", $TennisMusic, 22.0),
     SceneInfo.new("transition_room", "", $TransitionMusic, -1),
-    SceneInfo.new("whack_a_mole", "Kill!", $WhackMusic, 22.0),
+    SceneInfo.new("tug", "Tug!", $TugMusic, 22.0),
     SceneInfo.new("transition_room", "", $TransitionMusic, -1),
 ]
 
