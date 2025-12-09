@@ -1,8 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://dusaf4pume4ks"]
+[gd_scene load_steps=15 format=3 uid="uid://dusaf4pume4ks"]
 
 [ext_resource type="Script" uid="uid://dloxebt0c0wsc" path="res://scripts/clean_player.gd" id="1_cg2ei"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_x5dwh"]
-[ext_resource type="Texture2D" uid="uid://crym8r56sf5" path="res://art/dog-above.png" id="3_x5dwh"]
+[ext_resource type="Texture2D" uid="uid://cjxs3tht6qj7h" path="res://art/blue dog/lick_blue.png" id="3_jhydn"]
+[ext_resource type="Texture2D" uid="uid://dxe4y03rb6ob1" path="res://art/red dog/lick_red.png" id="3_x5dwh"]
+[ext_resource type="Texture2D" uid="uid://c8evyp7hbkaqk" path="res://art/blue dog/lick_blue-1.png" id="4_gqlqw"]
+[ext_resource type="Texture2D" uid="uid://vjrc11q77eb0" path="res://art/blue dog/lick_blue-2.png" id="5_ru8wm"]
+[ext_resource type="Texture2D" uid="uid://b7fseh1a71x6e" path="res://art/blue dog/lick_blue-3.png" id="6_4aoas"]
+[ext_resource type="Texture2D" uid="uid://d1odkovxu7sop" path="res://art/red dog/lick_red-1.png" id="8_okhbp"]
+[ext_resource type="Texture2D" uid="uid://81u85qc6mh6l" path="res://art/red dog/lick_red-2.png" id="9_lqmgo"]
+[ext_resource type="Texture2D" uid="uid://bcdqdc0e2wls" path="res://art/red dog/lick_red-3.png" id="10_jaeb7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qh4hi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jhydn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_gqlqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ru8wm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4aoas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jhydn")
+}],
+"loop": false,
+"name": &"lick",
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fw5nd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_x5dwh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_okhbp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lqmgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jaeb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x5dwh")
+}],
+"loop": false,
+"name": &"lick",
+"speed": 12.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cg2ei"]
 radius = 38.052597
@@ -12,15 +75,22 @@ size = Vector2(181, 20)
 
 [node name="CleanPlayer" type="CharacterBody2D"]
 script = ExtResource("1_cg2ei")
+player = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(1.5, 5)
 texture = ExtResource("2_x5dwh")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="player2" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -142)
-texture = ExtResource("3_x5dwh")
+sprite_frames = SubResource("SpriteFrames_qh4hi")
+animation = &"lick"
+
+[node name="player1" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -142)
+sprite_frames = SubResource("SpriteFrames_fw5nd")
+animation = &"lick"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -328)

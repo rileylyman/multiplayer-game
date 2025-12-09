@@ -129,10 +129,10 @@ region_rect = Rect2(976, 96, 640, 1616)
 
 [node name="CleanPlayer" parent="." instance=ExtResource("2_d8c6d")]
 position = Vector2(-300, 185)
+player = 0
 
 [node name="CleanPlayer2" parent="." instance=ExtResource("2_d8c6d")]
 position = Vector2(300, 185)
-player = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
