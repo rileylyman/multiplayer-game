@@ -78,9 +78,7 @@ func _physics_process(_delta: float) -> void:
 			apply_central_impulse(d * move_force * 0.25)
 
 	if need_back_burst:
-		move_state = "jump"
-		visual.play_state("jump")
-		apply_central_impulse((Vector2.LEFT if player == Utils.PlayerType.PLAYER_1 else Vector2.RIGHT) * move_force)
+		apply_central_impulse((Vector2.LEFT if player == Utils.PlayerType.PLAYER_1 else Vector2.RIGHT) * move_force * 0.5)
 		need_back_burst = false
 
 	_clamp_pos_to_screen()
@@ -107,7 +105,7 @@ func _physics_process(_delta: float) -> void:
 		if won() and move_state != "win":
 			move_state = "win"
 			visual.play_state("win")
-		if not won() and move_state != "idle":
+		if not won() and move_state not in ["idle", "jump"]:
 				move_state = "idle"
 				visual.play_state("idle")
 		return

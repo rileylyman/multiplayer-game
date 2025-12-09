@@ -12,15 +12,16 @@ grow_vertical = 2
 script = ExtResource("1_m6ma0")
 
 [node name="Bg" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 
 [node name="Fg" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(565.355, 30)
+custom_minimum_size = Vector2(447.745, 15)
 layout_mode = 1
-offset_bottom = 30.0
-color = Color(0.91, 0.91, 0.91, 1)
+offset_right = 447.745
+offset_bottom = 15.0
+color = Color(0.83137256, 0.13725491, 0.015686275, 1)

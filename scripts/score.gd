@@ -7,9 +7,9 @@ func _ready() -> void:
     set_main_text()
     set_sub_texts()
 
-func adds_visible(visible: bool) -> void:
-    left_add.visible = visible
-    right_add.visible = visible
+func adds_visible(vis: bool) -> void:
+    left_add.visible = vis
+    right_add.visible = vis
 
 func add_scores() -> void:
     if GameManager.score_adds[0] > GameManager.score_adds[1]:

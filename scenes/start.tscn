@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bolqmlxppyiox"]
+[gd_scene load_steps=29 format=3 uid="uid://bolqmlxppyiox"]
 
 [ext_resource type="Script" uid="uid://dog2de40l8mju" path="res://scripts/start_manager.gd" id="1_0auqf"]
 [ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_4ge6i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://clgnlh1ne2um4" path="res://art/red dog/1.PNG" id="4_tn317"]
 [ext_resource type="Texture2D" uid="uid://qfw14nk5rvxl" path="res://art/blue dog/dog__b_body-1.png" id="5_m8nf6"]
 [ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="6_y16t7"]
+[ext_resource type="FontFile" uid="uid://cl814vrdtde8e" path="res://FreeCheese-dryYR.ttf" id="8_m8nf6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgjjs"]
 atlas = ExtResource("2_u80x2")
@@ -59,15 +60,21 @@ atlas = ExtResource("2_u80x2")
 region = Rect2(112, 48, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ewcy1"]
-font_size = 82
-outline_size = 7
-outline_color = Color(0, 0, 0, 1)
+font = ExtResource("8_m8nf6")
+font_size = 112
+font_color = Color(0.12, 0.12, 0.12, 1)
+outline_size = 12
+outline_color = Color(0.83, 0.13860995, 0.016599983, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jaeev"]
+font = ExtResource("8_m8nf6")
 font_size = 42
+font_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_u80x2"]
+font = ExtResource("8_m8nf6")
 font_size = 26
+font_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 
 [sub_resource type="Gradient" id="Gradient_y16t7"]
 offsets = PackedFloat32Array(0.99310344, 1)
@@ -127,9 +134,11 @@ scale = Vector2(-1, 1)
 texture = ExtResource("5_m8nf6")
 
 [node name="LeftStartKey" parent="." instance=ExtResource("3_kdmts")]
+self_modulate = Color(0.83137256, 0.13725491, 0.015686275, 1)
 position = Vector2(152, 313)
 
 [node name="RightStartKey" parent="." instance=ExtResource("3_kdmts")]
+self_modulate = Color(0.83137256, 0.13725491, 0.015686275, 1)
 position = Vector2(971, 313)
 texture = SubResource("AtlasTexture_pgjjs")
 player = 1
