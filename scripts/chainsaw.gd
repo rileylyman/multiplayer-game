@@ -7,6 +7,8 @@ class_name Chainsaw extends Area2D
 @onready var player1: RigidBody2D = $"/root/SceneRoot/TugPlayer"
 @onready var player2: RigidBody2D = $"/root/SceneRoot/TugPlayer2"
 
+var _has_requested_end := false
+
 
 var _curr_time_s := 0.0
 
@@ -20,9 +22,16 @@ func _ready() -> void:
 	)
 
 func _process(delta: float) -> void:
+	if not _has_requested_end and (player1.tug_over or player2.tug_over):
+		_has_requested_end = true
+		_request_end()
 	_curr_time_s += delta
 	sprite_container.scale.y = _screen_height / _sprite_height * _curr_time_s / GameManager.round_length_s
 	collision_shape.shape.size.y = 2.0 * _screen_height * _curr_time_s / GameManager.round_length_s
+
+func _request_end() -> void:
+	await get_tree().create_timer(2.0).timeout
+	GameManager.next_scene()
 
 func get_front_position() -> Vector2:
 	return Vector2(global_position.x, global_position.y + _sprite_height * sprite_container.scale.y)

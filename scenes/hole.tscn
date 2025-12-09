@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bkau70aua82xp" path="res://scripts/hole.gd" id="1_a2ebe"]
 [ext_resource type="Texture2D" uid="uid://chocmi8intnqt" path="res://art/hole.png" id="1_lerre"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="3_spnof"]
-[ext_resource type="Texture2D" uid="uid://mbqhaxff8r2n" path="res://art/personspriteone.png" id="4_spnof"]
+[ext_resource type="Texture2D" uid="uid://bylmtxsyf02p5" path="res://art/personspriteone1.png" id="4_1advb"]
 [ext_resource type="Texture2D" uid="uid://3dusppovc1gj" path="res://art/skeletonsprite.png" id="5_1advb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1advb"]
@@ -35,7 +35,7 @@ position = Vector2(1, 0)
 
 [node name="Sprite" type="Sprite2D" parent="ClipMask/Human"]
 scale = Vector2(0.042850718, 0.049165882)
-texture = ExtResource("4_spnof")
+texture = ExtResource("4_1advb")
 
 [node name="skeleton" type="Sprite2D" parent="ClipMask/Human"]
 scale = Vector2(0.042850718, 0.049165882)

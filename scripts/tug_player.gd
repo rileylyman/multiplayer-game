@@ -10,11 +10,13 @@ extends RigidBody2D
 @export var rand_factor_period := 2
 @export var spam_inc := 0.1
 
-@onready var trophy: RigidBody2D = %Trophy
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var trophy: RigidBody2D = %Trophy
 @onready var _curr_rand_factor := randf_range(rand_factor_min, rand_factor_max)
 @onready var _arm_container: ArmContainer = $ArmContainer
-@onready var visual = $Visual
+@onready var visual = $Visual if player == Utils.PlayerType.PLAYER_1 else $Visual2
+@onready var visual_other = $Visual2 if player == Utils.PlayerType.PLAYER_1 else $Visual
+@onready var mouth_offset = visual.get_node("MouthOffset")
 
 
 var need_back_burst := false
@@ -24,10 +26,14 @@ var _rand_factor_dir := 1
 var move_state := "idle"
 
 func _ready() -> void:
-	
-	
 	_periodic_random_impulse()
+	visual.visible = true
+	visual_other.visible = false
 	visual.play_state("idle")
+	_arm_container.global_position = get_mouth_pos()
+
+func get_mouth_pos() -> Vector2:
+	return mouth_offset.global_position
 
 func _periodic_random_impulse() -> void:
 	while not tug_over:
@@ -39,11 +45,12 @@ func chainsaw_hit(is_self: bool) -> void:
 	if tug_over:
 		return
 	tug_over = true
-	need_back_burst = is_self
+	need_back_burst = true
 	_arm_container.player_hit(is_self)
 	if is_self:
 		move_state = "jump"
 		visual.play_state("jump")
+
 func won() -> bool:
 	if _arm_container == null:
 		return false
@@ -57,20 +64,23 @@ func _process(delta: float) -> void:
 		_rand_factor_dir *= -1
 
 	if not tug_over:
-		_arm_container.target = other_player.global_position
+		_arm_container.target = other_player.get_mouth_pos()
 
 func _physics_process(_delta: float) -> void:
 	var move_vector = _get_move_vector(player)
-	apply_central_force(move_vector * move_force)
 
-	if Utils.is_player_action_just_pressed("button1", player):
-		var d = move_vector
-		if d.length() == 0:
-			d = -_get_trophy_vector().normalized()
-		apply_central_impulse(d * move_force * 0.25)
+	if not tug_over:
+		apply_central_force(move_vector * move_force)
+		if Utils.is_player_action_just_pressed("button1", player):
+			var d = move_vector
+			if d.length() == 0:
+				d = -_get_trophy_vector().normalized()
+			apply_central_impulse(d * move_force * 0.25)
 
 	if need_back_burst:
-		apply_central_impulse((Vector2.LEFT if player == Utils.PlayerType.PLAYER_1 else Vector2.RIGHT) * move_force * 2)
+		move_state = "jump"
+		visual.play_state("jump")
+		apply_central_impulse((Vector2.LEFT if player == Utils.PlayerType.PLAYER_1 else Vector2.RIGHT) * move_force)
 		need_back_burst = false
 
 	_clamp_pos_to_screen()
