@@ -87,6 +87,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_5o0wp")
 
 [node name="TennisBall" type="Area2D" parent="."]
+z_index = 5
 script = ExtResource("3_5o0wp")
 
 [node name="Shadow" type="Sprite2D" parent="TennisBall"]
@@ -96,6 +97,7 @@ texture = ExtResource("2_5o0wp")
 
 [node name="Sprite" type="Sprite2D" parent="TennisBall"]
 self_modulate = Color(0.4833336, 0, 1, 1)
+z_index = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_5o0wp")
 
@@ -103,10 +105,10 @@ texture = ExtResource("2_5o0wp")
 shape = SubResource("RectangleShape2D_f8kcq")
 
 [node name="TennisPlayer" parent="." instance=ExtResource("3_jvd1j")]
-position = Vector2(-500, 0)
+position = Vector2(-400, 0)
 
 [node name="TennisPlayer2" parent="." instance=ExtResource("3_jvd1j")]
-position = Vector2(500, 0)
+position = Vector2(400, 0)
 player = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
