@@ -79,8 +79,8 @@ func _handle_shown() -> void:
 		_switch_state(HumanState.HIDDEN)
 		return
 
-	var player1_bite = human.overlaps_body(player1) and player1.is_biting()
-	var player2_bite = human.overlaps_body(player2) and player2.is_biting()
+	var player1_bite = human.overlaps_area(player1.bite_area) and player1.is_biting()
+	var player2_bite = human.overlaps_area(player2.bite_area) and player2.is_biting()
 	if player1_bite or player2_bite:
 		_switch_state(HumanState.DEAD)
 		if player1_bite:
