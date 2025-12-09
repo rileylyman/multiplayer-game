@@ -5,7 +5,7 @@ extends AnimationPlayer
 
 func _ready() -> void:
     instruction.text = GameManager.get_transition_instruction_text()
-    var needs_score_tick := GameManager.score_adds[0] > 0 or GameManager.score_adds[1] > 0
+    var needs_score_tick: bool = GameManager.score_adds[0] > 0 or GameManager.score_adds[1] > 0
     score.adds_visible(needs_score_tick)
 
     GameManager.start_scene()
@@ -14,6 +14,11 @@ func _ready() -> void:
     if needs_score_tick:
         await score.add_scores()
         await get_tree().create_timer(1.5).timeout
-    play("down")
-    await animation_finished
-    GameManager.next_scene()
+    
+    if not GameManager.is_last_scene():
+        play("down")
+        await animation_finished
+        GameManager.next_scene()
+    else:
+        play("down_lite")
+

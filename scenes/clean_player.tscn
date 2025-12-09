@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dusaf4pume4ks"]
+[gd_scene load_steps=6 format=3 uid="uid://dusaf4pume4ks"]
 
 [ext_resource type="Script" uid="uid://dloxebt0c0wsc" path="res://scripts/clean_player.gd" id="1_cg2ei"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_x5dwh"]
+[ext_resource type="Texture2D" uid="uid://crym8r56sf5" path="res://art/dog-above.png" id="3_x5dwh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cg2ei"]
-radius = 48.04165
+radius = 38.052597
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8c6d"]
 size = Vector2(181, 20)
@@ -13,14 +14,19 @@ size = Vector2(181, 20)
 script = ExtResource("1_cg2ei")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(1.5, 5)
 texture = ExtResource("2_x5dwh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -142)
+texture = ExtResource("3_x5dwh")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -328)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -49)
+position = Vector2(-1, -83)
 shape = SubResource("CircleShape2D_cg2ei")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]

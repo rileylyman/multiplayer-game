@@ -12,9 +12,7 @@ var _duration: float
 var _elapsed: float
 
 func _ready() -> void:
-    global_position = Vector2(500, 0)
-    hit_towards(Vector2(-500, 0))
-
+    on_ground_fall()
     body_entered.connect(func(body):
         if body is TennisPlayer:
             body.ball = self
@@ -24,6 +22,14 @@ func _ready() -> void:
         if body is TennisPlayer:
             body.ball = null
     )
+
+func on_ground_fall() -> void:
+    if position.x > 0:
+        global_position = Vector2(500, 0)
+        hit_towards(Vector2(-500, 0))
+    else:
+        global_position = Vector2(-500, 0)
+        hit_towards(Vector2(500, 0))
 
 func hit_towards(target: Vector2) -> void:
     _target = target
@@ -42,7 +48,7 @@ func _process(delta: float) -> void:
     var t = _elapsed / _duration * 2.0 - 1.0
     global_position = _start.lerp(_target, (t + 1.0) / 2.0)
     if t > 1.1:
-        _ready()
+        on_ground_fall()
 
     var height = max_height * (1 - t * t)
     sprite.position.y = - height

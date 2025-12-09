@@ -1,11 +1,35 @@
-[gd_scene load_steps=11 format=3 uid="uid://du31heba8joal"]
+[gd_scene load_steps=16 format=3 uid="uid://du31heba8joal"]
 
-[ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_f8kcq"]
+[ext_resource type="Script" uid="uid://b0c54piy11hgs" path="res://scripts/scene_id.gd" id="1_l67it"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_5o0wp"]
+[ext_resource type="Texture2D" uid="uid://cxqny5p4nij5s" path="res://art/tennis1.png" id="2_l67it"]
 [ext_resource type="Script" uid="uid://b0xxy4abjc0nx" path="res://scripts/tennis_ball.gd" id="3_5o0wp"]
+[ext_resource type="Texture2D" uid="uid://bvnluoiqcvgw3" path="res://art/tennis2.png" id="3_6y81u"]
 [ext_resource type="PackedScene" uid="uid://c42odptjcafw1" path="res://scenes/tennis_player.tscn" id="3_jvd1j"]
+[ext_resource type="Texture2D" uid="uid://clbfon1nu6uvq" path="res://art/tennis3.png" id="4_02kyq"]
 [ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_jvd1j"]
+[ext_resource type="Texture2D" uid="uid://cp8v8raf4a6jd" path="res://art/tennis4.png" id="5_x0vib"]
 [ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="6_vnkel"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kxsdh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l67it")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6y81u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_02kyq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x0vib")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8kcq"]
 size = Vector2(32, 32)
@@ -40,10 +64,19 @@ shader_parameter/progress = 0.0
 shader_parameter/progress_bias = Vector2(0, 0)
 
 [node name="SceneRoot" type="Node2D"]
+script = ExtResource("1_l67it")
+scene_name = "tennis"
 
 [node name="Bg1" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.6001736, 0.6018519)
-texture = ExtResource("1_f8kcq")
+texture = ExtResource("2_l67it")
+
+[node name="Bg2" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6001736, 0.6018519)
+sprite_frames = SubResource("SpriteFrames_kxsdh")
+autoplay = "default"
+frame_progress = 0.92781377
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

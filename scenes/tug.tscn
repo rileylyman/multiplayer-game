@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://di7okftxl6jka"]
+[gd_scene load_steps=15 format=3 uid="uid://di7okftxl6jka"]
 
+[ext_resource type="Script" uid="uid://b0c54piy11hgs" path="res://scripts/scene_id.gd" id="1_4iktf"]
 [ext_resource type="PackedScene" uid="uid://dvpj11elmui3x" path="res://scenes/tug_player.tscn" id="1_jnwth"]
 [ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_rbyxu"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_juwlg"]
@@ -46,6 +47,8 @@ shader_parameter/progress = 0.0
 shader_parameter/progress_bias = Vector2(0, 0)
 
 [node name="SceneRoot" type="Node2D"]
+script = ExtResource("1_4iktf")
+scene_name = "tug"
 
 [node name="Bg1" type="Sprite2D" parent="."]
 z_index = -2

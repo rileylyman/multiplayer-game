@@ -22,7 +22,7 @@ human_shown_height = 20.0
 shape = SubResource("CircleShape2D_1advb")
 
 [node name="HoleSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.075, 0.075)
 texture = ExtResource("1_lerre")
 
 [node name="ClipMask" type="Sprite2D" parent="."]

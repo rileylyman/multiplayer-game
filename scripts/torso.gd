@@ -11,4 +11,4 @@ func _ready() -> void:
         splatter.position = Vector2(randf_range(-200, 200), randf_range(-100, 100))
         splatter.scale = Vector2(randf_range(0.2, 1.5), randf_range(0.2, 1.5))
         splatter.rotation = randf_range(-PI, PI)
-        splatter.find_child("Sprite").self_modulate = Color.from_hsv(1, 1, randf_range(0.5, 1))
+        splatter.find_child("Sprite2D").self_modulate = Color.from_hsv(1, 1, randf_range(0.5, 1))

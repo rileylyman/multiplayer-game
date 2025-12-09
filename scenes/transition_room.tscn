@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dvmaqplyh4m3"]
+[gd_scene load_steps=22 format=3 uid="uid://dvmaqplyh4m3"]
 
 [ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="1_7rfiw"]
 [ext_resource type="Texture2D" uid="uid://df31p6dvjo0c3" path="res://art/transition_background.png" id="1_t55wc"]
@@ -381,10 +381,95 @@ tracks/6/keys = {
 "times": PackedFloat32Array(1.5333333)
 }
 
+[sub_resource type="Animation" id="Animation_5rgkk"]
+resource_name = "down_lite"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Score/LeftAdd:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1333332, 0.6333332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Score/RightAdd:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14166641, 0.6333332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/Score")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/Score:offset_top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(100, -0.25, 0, 0.25, 0, 482, -0.244, 0, 0.265, 0, 482, -0.915, 0, 1, 0),
+"times": PackedFloat32Array(0, 0.5, 4.066666)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftPlayer:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(490, -0.5250001, 0, 0.5250001, 0, 490, -0.5250001, 0, 0.5250001, 0, 490, -0.5250001, 0, 0.5250001, 0),
+"times": PackedFloat32Array(0, 0.0333333, 4.066667)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightPlayer:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(490, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0333333, 0.5, 4.066667)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control/Instruction:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-500, -0.12500024, -140.25, 0.12500024, 140.25, -500, -0.12500024, -140.25, 0.12500024, 140.25, 100, -0.12500024, 0, 0.12500024, 0, 100, -0.12500024, 0, 0.12500024, 0),
+"times": PackedFloat32Array(0.099999994, 0.6, 1.1, 4.066667)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_skmwq"]
 _data = {
 &"RESET": SubResource("Animation_f70u8"),
 &"down": SubResource("Animation_t55wc"),
+&"down_lite": SubResource("Animation_5rgkk"),
 &"main": SubResource("Animation_v5gkh"),
 &"up": SubResource("Animation_33eg8")
 }

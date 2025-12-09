@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://cp2u6g0w070bm"]
+
+[ext_resource type="Script" uid="uid://2mjixfufbhbc" path="res://scripts/game_manager.gd" id="1_34tde"]
+[ext_resource type="AudioStream" uid="uid://dq38svihv76m5" path="res://audio/HellHounds_MainMenu.mp3" id="2_mx40s"]
+[ext_resource type="AudioStream" uid="uid://ba626gbty57wc" path="res://audio/HellHounds_GameEndbumper.mp3" id="3_2uts2"]
+[ext_resource type="AudioStream" uid="uid://cbrldmbr0mfli" path="res://audio/HellHounds_CleanMinigame.mp3" id="4_2chjq"]
+[ext_resource type="AudioStream" uid="uid://cjjiaxk3asxth" path="res://audio/HellHounds_TugOfWarMinigame.mp3" id="5_1jauj"]
+[ext_resource type="AudioStream" uid="uid://bd2otpdq63d2p" path="res://audio/HellHounds_CatchMinigame.mp3" id="6_biy4i"]
+[ext_resource type="AudioStream" uid="uid://7bsbf8k7is1q" path="res://audio/HellHounds_WhackMinigame.mp3" id="7_4arur"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_34tde")
+
+[node name="StartScreenMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mx40s")
+
+[node name="TransitionMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2uts2")
+
+[node name="CleanFloorMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2chjq")
+
+[node name="TugMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1jauj")
+
+[node name="TennisMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_biy4i")
+
+[node name="WhackMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4arur")

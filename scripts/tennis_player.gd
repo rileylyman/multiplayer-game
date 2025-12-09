@@ -32,7 +32,7 @@ func _physics_process(_delta: float) -> void:
     if ball != null and ball.is_near_ground():
         if Utils.is_player_action_just_pressed("button1", player):
             ball.hit_towards(_get_hit_to_point())
-            GameManager.add_score(1, player)
+            GameManager.add_score(19, player)
 
 func _clamp_pos_to_screen() -> void:
     var screen_rect = Utils.get_global_viewport_rect()

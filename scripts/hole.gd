@@ -63,7 +63,7 @@ func _switch_state(new_state: HumanState) -> void:
 func _handle_hidden() -> void:
 	human_dead.visible = false
 	human_sprite.visible = true
-	if randf() < 0.001:
+	if randf() < 0.0025:
 		_switch_state(HumanState.PEEK)
 		return
 
@@ -85,10 +85,10 @@ func _handle_shown() -> void:
 		_switch_state(HumanState.DEAD)
 		if player1_bite:
 			player1.freeze()
-			GameManager.add_score(1, Utils.PlayerType.PLAYER_1)
+			GameManager.add_score(13, Utils.PlayerType.PLAYER_1)
 		if player2_bite:
 			player2.freeze()
-			GameManager.add_score(1, Utils.PlayerType.PLAYER_2)
+			GameManager.add_score(13, Utils.PlayerType.PLAYER_2)
 		return
 
 func _handle_dead() -> void:

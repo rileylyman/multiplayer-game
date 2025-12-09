@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://x4axdgk5r4xy"]
+[gd_scene load_steps=15 format=3 uid="uid://x4axdgk5r4xy"]
 
-[ext_resource type="Texture2D" uid="uid://br854doxwtess" path="res://art/bg1.png" id="1_d8c6d"]
+[ext_resource type="Script" uid="uid://b0c54piy11hgs" path="res://scripts/scene_id.gd" id="1_u0psv"]
 [ext_resource type="PackedScene" uid="uid://b5ov5o7gp0em1" path="res://scenes/torso.tscn" id="1_unwwb"]
 [ext_resource type="PackedScene" uid="uid://dusaf4pume4ks" path="res://scenes/clean_player.tscn" id="2_d8c6d"]
+[ext_resource type="Texture2D" uid="uid://cm8dj46fjl702" path="res://art/clean_background.png" id="2_ve162"]
 [ext_resource type="PackedScene" uid="uid://bu135ud83jfn3" path="res://scenes/time_tracker.tscn" id="4_ma3eh"]
+[ext_resource type="Texture2D" uid="uid://co3edg8k5t4mr" path="res://art/tug_foot.png" id="4_ve162"]
 [ext_resource type="Shader" uid="uid://di5ykhxviigkg" path="res://transition.gdshader" id="5_u0psv"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="6_ve162"]
 
@@ -14,6 +16,9 @@ b = Vector2(-576, -4)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_unwwb"]
 a = Vector2(-1, 327)
 b = Vector2(0, -326)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k5137"]
+load_path = "res://.godot/imported/tug_foot.png-c9763b2191a546650d7c66c74a527ffd.ctex"
 
 [sub_resource type="Gradient" id="Gradient_k5137"]
 offsets = PackedFloat32Array(0.99310344, 1)
@@ -45,10 +50,12 @@ shader_parameter/progress = 0.0
 shader_parameter/progress_bias = Vector2(0, 0)
 
 [node name="SceneRoot" type="Node2D"]
+script = ExtResource("1_u0psv")
+scene_name = "clean_floor"
 
 [node name="Bg1" type="Sprite2D" parent="."]
 scale = Vector2(0.6001736, 0.6018519)
-texture = ExtResource("1_d8c6d")
+texture = ExtResource("2_ve162")
 
 [node name="LowerBoundary" type="StaticBody2D" parent="."]
 
@@ -69,6 +76,56 @@ position = Vector2(-300, -140)
 
 [node name="Torso2" parent="." instance=ExtResource("1_unwwb")]
 position = Vector2(300, -140)
+
+[node name="Limbs" type="Node2D" parent="."]
+
+[node name="TugFoot" type="Sprite2D" parent="Limbs"]
+position = Vector2(-96, -135)
+rotation = -2.7072647
+scale = Vector2(0.10000001, 0.10000001)
+texture = ExtResource("4_ve162")
+region_enabled = true
+region_rect = Rect2(0, 416, 1104, 1972)
+
+[node name="TugFoot2" type="Sprite2D" parent="Limbs"]
+position = Vector2(133.00002, -246)
+rotation = 1.2349718
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_ve162")
+region_enabled = true
+region_rect = Rect2(0, 416, 1104, 1972)
+
+[node name="TugFoot3" type="Sprite2D" parent="Limbs"]
+position = Vector2(458.00003, -210)
+rotation = -0.6732702
+scale = Vector2(0.1, 0.1)
+texture = SubResource("CompressedTexture2D_k5137")
+region_enabled = true
+region_rect = Rect2(976, 96, 640, 1616)
+
+[node name="TugFoot5" type="Sprite2D" parent="Limbs"]
+position = Vector2(22.000061, -188.00002)
+rotation = -1.3105369
+scale = Vector2(0.1, 0.1)
+texture = SubResource("CompressedTexture2D_k5137")
+region_enabled = true
+region_rect = Rect2(976, 96, 640, 1616)
+
+[node name="TugFoot6" type="Sprite2D" parent="Limbs"]
+position = Vector2(-122, -187)
+rotation = 0.07819757
+scale = Vector2(0.1, 0.1)
+texture = SubResource("CompressedTexture2D_k5137")
+region_enabled = true
+region_rect = Rect2(976, 96, 640, 1616)
+
+[node name="TugFoot4" type="Sprite2D" parent="Limbs"]
+position = Vector2(-454.9999, -232)
+rotation = -2.0335355
+scale = Vector2(0.10000001, 0.10000001)
+texture = SubResource("CompressedTexture2D_k5137")
+region_enabled = true
+region_rect = Rect2(976, 96, 640, 1616)
 
 [node name="CleanPlayer" parent="." instance=ExtResource("2_d8c6d")]
 position = Vector2(-300, 185)

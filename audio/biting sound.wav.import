@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://drayueeooiy3n"
+path="res://.godot/imported/biting sound.wav-e766ff9cb53de43b08af625072e3af14.sample"
+
+[deps]
+
+source_file="res://audio/biting sound.wav"
+dest_files=["res://.godot/imported/biting sound.wav-e766ff9cb53de43b08af625072e3af14.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,13 +1,15 @@
 extends Control
 
-@onready var total_time_s := GameManager.round_length_s
 @onready var fore: ColorRect = $Fg
+@onready var root: SceneID = $"/root/SceneRoot"
 
+var total_time_s: float
 var time_s := 0.0
 var _over := false
 
 func _ready() -> void:
-    GameManager.start_scene()
+    GameManager.start_scene(root.scene_name)
+    total_time_s = GameManager.curr_scene_time()
 
 func _process(delta: float) -> void:
     time_s += delta
