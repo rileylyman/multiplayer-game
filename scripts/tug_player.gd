@@ -17,6 +17,8 @@ extends RigidBody2D
 @onready var visual = $Visual if player == Utils.PlayerType.PLAYER_1 else $Visual2
 @onready var visual_other = $Visual2 if player == Utils.PlayerType.PLAYER_1 else $Visual
 @onready var mouth_offset = visual.get_node("MouthOffset")
+@onready var sfx_step: AudioStreamPlayer2D = $SFX_step
+@onready var sfx_bark: AudioStreamPlayer2D = $SFX_bark
 
 
 var need_back_burst := false
@@ -48,8 +50,13 @@ func chainsaw_hit(is_self: bool) -> void:
 	need_back_burst = true
 	_arm_container.player_hit(is_self)
 	if is_self:
+		$SFX_bark.play()
 		move_state = "jump"
 		visual.play_state("jump")
+		
+		
+func play_step_sfx():
+	$SFX_step.play()
 
 func won() -> bool:
 	if _arm_container == null:

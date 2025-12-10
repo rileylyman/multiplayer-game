@@ -7,6 +7,7 @@ class_name TennisPlayer extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var visual_p1: Node2D = $VisualP1
 @onready var visual_p2: Node2D = $VisualP2
+@onready var sfx_step: AudioStreamPlayer2D = $SFX_step
 
 var front: AnimatedSprite2D
 var mid: AnimatedSprite2D
@@ -87,7 +88,10 @@ func _on_mid_animation_finished() -> void:
 			mid.play("run")
 		else:
 			mid.play("idle")
-
+			
+func play_step_sfx():
+	$SFX_step.play()
+	
 func _physics_process(_delta: float) -> void:
 	var move_vector = Utils.get_player_move_vector("move_left", "move_right", "move_up", "move_down", player)
 	var desired = speed * move_vector

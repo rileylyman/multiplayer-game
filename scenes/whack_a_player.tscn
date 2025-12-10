@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://ekh5ebn34hip"]
+[gd_scene load_steps=101 format=3 uid="uid://ekh5ebn34hip"]
 
 [ext_resource type="Script" uid="uid://bskbr7hwabgcy" path="res://scripts/whack_a_player.gd" id="1_x53ts"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_nury8"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://h4mqjjp6gcl2" path="res://art/blue dog/dog_b_walk-7.png" id="42_5i50d"]
 [ext_resource type="Texture2D" uid="uid://bw4i0ktfu3ega" path="res://art/blue dog/dog_b_walk-8.png" id="43_aj5yw"]
 [ext_resource type="Texture2D" uid="uid://dp5bfosjhyc0g" path="res://art/red dog/idle_a-3.png" id="44_4nkb2"]
+[ext_resource type="AudioStream" uid="uid://bmkjrc7kp0xee" path="res://audio/steps.wav" id="44_6jkll"]
 [ext_resource type="Texture2D" uid="uid://c6oauoyfn4lvu" path="res://art/red dog/red_dog_jump-1.png" id="45_paifd"]
 [ext_resource type="Texture2D" uid="uid://cho3ra1ibslfj" path="res://art/red dog/red_dog_jump-2.png" id="46_3y28q"]
 [ext_resource type="Texture2D" uid="uid://b1vxd4kdchrg" path="res://art/red dog/red_dog_jump-3.png" id="47_t2qgy"]
@@ -84,6 +85,7 @@
 [ext_resource type="Texture2D" uid="uid://clvt22tm7b143" path="res://art/red dog/dog_a_legs_bk2-6.png" id="82_gc2s6"]
 [ext_resource type="Texture2D" uid="uid://dh571lha7belf" path="res://art/red dog/dog_a_legs_bk2-7.png" id="83_0w1mb"]
 [ext_resource type="Texture2D" uid="uid://ewjgiug0r8pw" path="res://art/red dog/dog_a_legs_bk2-8.png" id="84_jm0q3"]
+[ext_resource type="AudioStream" uid="uid://drayueeooiy3n" path="res://audio/biting sound.wav" id="86_cijfk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p1coo"]
 animations = [{
@@ -363,6 +365,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(30, 20), Vector2(30, 21), Vector2(30, 20), Vector2(30, 21), Vector2(30, 20)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15, 0.41666666),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step_sfx"
+}, {
+"args": [],
+"method": &"play_step_sfx"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ptvx8"]
 _data = {
@@ -615,23 +634,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_iodxx"]
-resource_name = "run_motion"
-length = 0.50000834
-step = 0.083333336
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16649891, 0.2501285, 0.41662744, 0.50000834),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-30, 20), Vector2(-30, 22), Vector2(-30, 20), Vector2(-30, 22), Vector2(-30, 20)]
-}
-
 [sub_resource type="Animation" id="Animation_3jb7q"]
 resource_name = "RESET"
 tracks/0/type = "value"
@@ -645,6 +647,41 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-30, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_iodxx"]
+resource_name = "run_motion"
+length = 0.50000834
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16649891, 0.2501285, 0.41662744, 0.50000834),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-30, 20), Vector2(-30, 22), Vector2(-30, 20), Vector2(-30, 22), Vector2(-30, 20)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666667, 0.41666666),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step_sfx"
+}, {
+"args": [],
+"method": &"play_step_sfx"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ecd3k"]
@@ -740,6 +777,13 @@ scale = Vector2(6.6666665, -6.6666665)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisualP1/BiteHitbox"]
 shape = SubResource("RectangleShape2D_jvd1j")
 
+[node name="SFX_step" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(30, 20.896812)
+rotation = -3.1415925
+scale = Vector2(0.15, -0.15)
+stream = ExtResource("44_6jkll")
+volume_db = 10.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.5, 0.5)
@@ -749,3 +793,6 @@ texture = ExtResource("2_nury8")
 visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_jvd1j")
+
+[node name="SFX_bite" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("86_cijfk")

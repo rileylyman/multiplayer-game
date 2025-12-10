@@ -9,7 +9,9 @@ class_name WhackAPlayer extends CharacterBody2D
 @onready var visual_p1: Node2D = $VisualP1
 @onready var visual_p2: Node2D = $VisualP2
 @onready var bite_area: Area2D = (visual_p1.get_node("BiteHitbox") if player == Utils.PlayerType.PLAYER_1 else visual_p2.get_node("BiteHitbox"))
-
+var anim_player: AnimationPlayer
+@onready var sfx_step: AudioStreamPlayer2D = $SFX_step
+@onready var sfx_bite: AudioStreamPlayer2D = $SFX_bite
 
 var front: AnimatedSprite2D
 var mid: AnimatedSprite2D
@@ -27,12 +29,14 @@ func _ready() -> void:
 		front = visual_p1.get_node("front")
 		mid = visual_p1.get_node("mid")
 		back = visual_p1.get_node("back")
+		anim_player = visual_p1.get_node("AnimationPlayer")
 	else:
 		visual_p1.visible = false
 		visual_p2.visible = true
 		front = visual_p2.get_node("front")
 		mid = visual_p2.get_node("mid")
 		back = visual_p2.get_node("back")
+		anim_player = visual_p2.get_node("AnimationPlayer")
 
 	front.play("idle")
 	mid.play("idle")
@@ -40,6 +44,8 @@ func _ready() -> void:
 
 	mid.animation_finished.connect(_on_mid_animation_finished)
 
+func play_step_sfx():
+		$SFX_step.play()
 
 func freeze() -> void:
 	_frozen = true
@@ -88,11 +94,15 @@ func set_move_state(state: String) -> void:
 		back.play("idle")
 		if not mid_is_biting:
 			mid.play("idle")
+		if anim_player.current_animation != "RESET":
+			anim_player.play("RESET")
 	elif state == "run":
 		front.play("run")
 		back.play("run")
 		if not mid_is_biting:
 			mid.play("run")
+		if anim_player.current_animation != "run_motion":
+			anim_player.play("run_motion")
 
 
 func play_bite() -> void:
@@ -100,6 +110,7 @@ func play_bite() -> void:
 	mid.stop()
 	mid.frame = 0
 	mid.play("bite")
+	sfx_bite.play()
 
 
 func _on_mid_animation_finished() -> void:

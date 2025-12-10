@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://dvpj11elmui3x"]
+[gd_scene load_steps=92 format=3 uid="uid://dvpj11elmui3x"]
 
 [ext_resource type="Script" uid="uid://fr0wjcw4av83" path="res://scripts/tug_player.gd" id="1_7wpad"]
 [ext_resource type="Texture2D" uid="uid://boa41jola0tk0" path="res://icon.svg" id="2_nox0v"]
@@ -77,6 +77,8 @@
 [ext_resource type="Texture2D" uid="uid://clvt22tm7b143" path="res://art/red dog/dog_a_legs_bk2-6.png" id="74_6n7u1"]
 [ext_resource type="Texture2D" uid="uid://dh571lha7belf" path="res://art/red dog/dog_a_legs_bk2-7.png" id="75_y711q"]
 [ext_resource type="Texture2D" uid="uid://ewjgiug0r8pw" path="res://art/red dog/dog_a_legs_bk2-8.png" id="76_433p1"]
+[ext_resource type="AudioStream" uid="uid://bmkjrc7kp0xee" path="res://audio/steps.wav" id="78_mn0qi"]
+[ext_resource type="AudioStream" uid="uid://xp44xpqcp10" path="res://audio/dog bark.wav" id="79_krt6w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wpad"]
 size = Vector2(117, 121)
@@ -334,6 +336,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 3), Vector2(0, 2), Vector2(0, 0), Vector2(0, 3), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666667, 0.41666666),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step_sfx"
+}, {
+"args": [],
+"method": &"play_step_sfx"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ptvx8"]
@@ -654,3 +673,15 @@ libraries = {
 
 [node name="MouthOffset" type="Node2D" parent="Visual"]
 position = Vector2(390, -200)
+
+[node name="SFX_step" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(30, 20.896812)
+rotation = -3.1415925
+scale = Vector2(0.15, -0.15)
+stream = ExtResource("78_mn0qi")
+volume_db = 10.0
+
+[node name="SFX_bark" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("79_krt6w")
+volume_db = 20.0
+pitch_scale = 1.5
