@@ -106,6 +106,7 @@ shader_parameter/progress = 0.0
 shader_parameter/progress_bias = Vector2(0, 0)
 
 [node name="SceneRoot" type="Node2D"]
+position = Vector2(4, 11)
 
 [node name="Bg1" type="Sprite2D" parent="."]
 position = Vector2(575.8333, 325)

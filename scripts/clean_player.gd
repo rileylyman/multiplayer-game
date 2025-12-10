@@ -39,10 +39,11 @@ func _physics_process(_delta: float) -> void:
 				
 func _play_lick() -> void:
 	var layer = player1_layer if player == Utils.PlayerType.PLAYER_1 else player2_layer
-	layer.frame = 0
+	# layer.frame = 0
 
 	layer.play("lick")
-	$SFX_lick.play()
+	if not sfx_lick.playing:
+		sfx_lick.play()
 
 func _clamp_pos_to_screen() -> void:
 	var screen_rect = Utils.get_global_viewport_rect()

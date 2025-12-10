@@ -53,9 +53,9 @@ func _get_hit_to_point() -> Vector2:
 	var x = randf_range(other_player.global_position.x - buffer, other_player.global_position.x + buffer)
 	var y = randf_range(other_player.global_position.y - buffer, other_player.global_position.y + buffer)
 	var ret = Vector2(x, y)
-	var margin := 50.0
-	var p1 = wssr.position + Vector2(margin, margin)
-	var p2 = wssr.end - Vector2(margin, margin)
+	var margin := Vector2(50.0, 150.0)
+	var p1 = wssr.position + margin
+	var p2 = wssr.end - margin
 	return ret.clamp(p1, p2)
 	
 func set_move_state(state: String) -> void:

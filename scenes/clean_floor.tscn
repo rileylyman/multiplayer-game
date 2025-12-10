@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://x4axdgk5r4xy"]
 
-[ext_resource type="Script" uid="uid://b0c54piy11hgs" path="res://scripts/scene_id.gd" id="1_u0psv"]
+[ext_resource type="Script" path="res://scripts/scene_id.gd" id="1_u0psv"]
 [ext_resource type="PackedScene" uid="uid://b5ov5o7gp0em1" path="res://scenes/torso.tscn" id="1_unwwb"]
 [ext_resource type="PackedScene" uid="uid://dusaf4pume4ks" path="res://scenes/clean_player.tscn" id="2_d8c6d"]
 [ext_resource type="Texture2D" uid="uid://cm8dj46fjl702" path="res://art/clean_background.png" id="2_ve162"]
